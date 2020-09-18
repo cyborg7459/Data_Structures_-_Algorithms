@@ -84,6 +84,36 @@ void set(struct Array &x, int t, int i) {
     display(x);
 }
 
+int max(struct Array x) {
+    int t = x.A[0];
+    for(int i=0; i<x.length; i++) {
+        if(x.A[i] > t)
+            t = x.A[i];
+    }
+    return t;
+}
+
+int min(struct Array x) {
+    int t = x.A[0];
+    for(int i=0; i<x.length; i++) {
+        if(x.A[i] < t)
+            t = x.A[i];
+    }
+    return t;
+}
+
+int sum(struct Array x) {
+    int t = 0;
+    for(int i=0; i<x.length; i++) {
+        t += x.A[i];
+    }
+    return t;
+}
+
+double avg(struct Array x) {
+    return (double)sum(x)/x.length;
+}
+
 int main() {
     struct Array arr;
     int n,m;
@@ -110,9 +140,7 @@ int main() {
     fill(arr);
     display(arr);
 
-    int k;
-    cin >> k;
-    set(arr,200,k);
+    cout << max(arr) << "\n" << min(arr) << "\n" << sum(arr) << "\n" << avg(arr) << "\n";
 
     // int el, idx;
     // cout << "Enter element to add : ";
