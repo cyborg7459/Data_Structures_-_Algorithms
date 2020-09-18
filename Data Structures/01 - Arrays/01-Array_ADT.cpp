@@ -27,10 +27,8 @@ void append(struct Array &x, int t) {
     if(x.length == x.size)
         cout << "Can't append, maximum limit reached";
     else {
-        cout << "Length : " << x.length << "\n";
         x.A[x.length] = t;
         x.length++;
-        cout << "Length : " << x.length << "\n";
         display(x);
     }
 }
@@ -45,7 +43,6 @@ void insert(struct Array &x, int el, int t) {
             x.A[i+1] = x.A[i];
         x.A[t] = el;
         x.length++;
-        cout << "Length : " << x.length << "\n";
         display(x);
     }
 }
@@ -59,6 +56,14 @@ void delete_elem(struct Array &x, int t) {
         x.length--;
         display(x);
     }
+}
+
+int search(struct Array x, int t)  {
+    for(int i=0; i<x.length; i++) {
+        if(x.A[i] == t)
+            return i;
+    }
+    return -1;
 }
 
 int main() {
@@ -103,6 +108,11 @@ int main() {
     cout << "Enter element to delete : ";
     cin >> del;
     delete_elem(arr, del);
+
+    int src;
+    cout << "Enter element to search : ";
+    cin >> src;
+    cout << "Element found at index : " << search(arr, src) << "\n";
 
     return 0;
 }
