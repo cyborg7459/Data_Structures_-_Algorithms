@@ -66,6 +66,24 @@ int search(struct Array x, int t)  {
     return -1;
 }
 
+int get(struct Array x, int i) {
+    if(i >= x.length) {
+        cout << "The index does not exist in the array\n";
+        return -1;
+    }
+    else {
+        return x.A[i];
+    }
+}
+
+void set(struct Array &x, int t, int i) {
+    if(i >= x.length)
+        cout << "The index does not exist in the array\n";
+    else
+        x.A[i] = t;
+    display(x);
+}
+
 int main() {
     struct Array arr;
     int n,m;
@@ -92,27 +110,31 @@ int main() {
     fill(arr);
     display(arr);
 
-    int el, idx;
-    cout << "Enter element to add : ";
-    cin >> el;
-    cout << "Enter index : ";
-    cin >> idx;
-    insert(arr, el, idx);
+    int k;
+    cin >> k;
+    set(arr,200,k);
 
-    int app;
-    cout << "Enter element to append : ";
-    cin >> app;
-    append(arr, app);
-
-    int del;
-    cout << "Enter element to delete : ";
-    cin >> del;
-    delete_elem(arr, del);
-
-    int src;
-    cout << "Enter element to search : ";
-    cin >> src;
-    cout << "Element found at index : " << search(arr, src) << "\n";
+    // int el, idx;
+    // cout << "Enter element to add : ";
+    // cin >> el;
+    // cout << "Enter index : ";
+    // cin >> idx;
+    // insert(arr, el, idx);
+    //
+    // int app;
+    // cout << "Enter element to append : ";
+    // cin >> app;
+    // append(arr, app);
+    //
+    // int del;
+    // cout << "Enter element to delete : ";
+    // cin >> del;
+    // delete_elem(arr, del);
+    //
+    // int src;
+    // cout << "Enter element to search : ";
+    // cin >> src;
+    // cout << "Element found at index : " << search(arr, src) << "\n";
 
     return 0;
 }
