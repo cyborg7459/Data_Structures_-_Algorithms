@@ -153,54 +153,5 @@ void rotate_right(struct Array &x, int t) {
 
 int main() {
     struct Array arr = {{2,3,4,5,6}, 10,5};
-    rotate_right(arr,459);
-    // int n,m;
-
-   //  while(true) {
-   //      cout << "Enter length of array : ";
-   //      cin >> n;
-   //      cout << "Enter maximum size of the array : ";
-   //      cin >> m;
-   //      if(m<n)
-   //          cout << "Array length cannot exceed the maximum size\n";
-   //      else if(n<0 || m<0)
-   //          cout << "Negative values are not accepted\n";
-   //      else
-   //          break;
-   // }
-    //
-    // arr.length = n;
-    // arr.size = m;
-    // int *x = new int[100];
-    // arr.A = x;
-
-    // cout << "Enter elements of the array : ";
-    // fill(arr);
-    // display(arr);
-    //
-    // cout << max(arr) << "\n" << min(arr) << "\n" << sum(arr) << "\n" << avg(arr) << "\n";
-
-    // int el, idx;
-    // cout << "Enter element to add : ";
-    // cin >> el;
-    // cout << "Enter index : ";
-    // cin >> idx;
-    // insert(arr, el, idx);
-    //
-    // int app;
-    // cout << "Enter element to append : ";
-    // cin >> app;
-    // append(arr, app);
-    //
-    // int del;
-    // cout << "Enter element to delete : ";
-    // cin >> del;
-    // delete_elem(arr, del);
-    //
-    // int src;
-    // cout << "Enter element to search : ";
-    // cin >> src;
-    // cout << "Element found at index : " << search(arr, src) << "\n";
-
     return 0;
 }
