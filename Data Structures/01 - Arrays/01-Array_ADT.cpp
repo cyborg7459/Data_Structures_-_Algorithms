@@ -2,7 +2,7 @@
 using namespace std;
 
 struct Array {
-  int* A;
+  int A[20];
   int size;
   int length;
 };
@@ -29,7 +29,7 @@ void append(struct Array &x, int t) {
     else {
         x.A[x.length] = t;
         x.length++;
-        display(x);
+        // display(x);
     }
 }
 
@@ -114,33 +114,71 @@ double avg(struct Array x) {
     return (double)sum(x)/x.length;
 }
 
+void reverse(struct Array &x) {
+    int i = 0;
+    int j = x.length-1;
+    while(i<j) {
+        swap(x.A[i], x.A[j]);
+        i++;
+        j--;
+    }
+    display(x);
+}
+
+void rotate_left(struct Array &x, int t) {
+    t = t%x.length;
+    struct Array y = {{}, 10, 0};
+    for(int i=t; i<x.length; i++) {
+        append(y, x.A[i]);
+    }
+    for(int i=0; i<t; i++) {
+        append(y, x.A[i]);
+    }
+    x = y;
+    display(x);
+}
+
+void rotate_right(struct Array &x, int t) {
+    t = t%x.length;
+    struct Array y = {{}, 10, 0};
+    for(int i=x.length-1; i>(x.length-1-t); i--) {
+        append(y, x.A[i]);
+    }
+    for(int i=0; i<x.length-t; i++) {
+        append(y, x.A[i]);
+    }
+    x = y;
+    display(x);
+}
+
 int main() {
-    struct Array arr;
-    int n,m;
+    struct Array arr = {{2,3,4,5,6}, 10,5};
+    rotate_right(arr,459);
+    // int n,m;
 
-    while(true) {
-        cout << "Enter length of array : ";
-        cin >> n;
-        cout << "Enter maximum size of the array : ";
-        cin >> m;
-        if(m<n)
-            cout << "Array length cannot exceed the maximum size\n";
-        else if(n<0 || m<0)
-            cout << "Negative values are not accepted\n";
-        else
-            break;
-   }
+   //  while(true) {
+   //      cout << "Enter length of array : ";
+   //      cin >> n;
+   //      cout << "Enter maximum size of the array : ";
+   //      cin >> m;
+   //      if(m<n)
+   //          cout << "Array length cannot exceed the maximum size\n";
+   //      else if(n<0 || m<0)
+   //          cout << "Negative values are not accepted\n";
+   //      else
+   //          break;
+   // }
+    //
+    // arr.length = n;
+    // arr.size = m;
+    // int *x = new int[100];
+    // arr.A = x;
 
-    arr.length = n;
-    arr.size = m;
-    int *x = new int[100];
-    arr.A = x;
-
-    cout << "Enter elements of the array : ";
-    fill(arr);
-    display(arr);
-
-    cout << max(arr) << "\n" << min(arr) << "\n" << sum(arr) << "\n" << avg(arr) << "\n";
+    // cout << "Enter elements of the array : ";
+    // fill(arr);
+    // display(arr);
+    //
+    // cout << max(arr) << "\n" << min(arr) << "\n" << sum(arr) << "\n" << avg(arr) << "\n";
 
     // int el, idx;
     // cout << "Enter element to add : ";
