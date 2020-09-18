@@ -1,157 +1,275 @@
 #include <iostream>
 using namespace std;
 
-struct Array {
-  int A[20];
-  int size;
-  int length;
+class Array {
+private:
+    int *A;
+    int size;
+    int length;
+public:
+    Array() {
+        size = 10;
+        A = new int[10];
+        length = 0;
+    }
+
+    Array(int sz, int len) {
+        size = sz;
+        length = len;
+        A = new int[size];
+    }
+
+    ~Array() {
+        delete []A;
+    }
+
+    void fill();
+    void display();
+    void append(int t);
+    void insert(int t, int idx);
+    void deleteAt(int idx);
+    int search(int t);
+    int get(int idx);
+    void set(int t, int idx);
+    int max();
+    int min();
+    int sum();
+    double avg();
+    void reverse();
+    void rotate_left(int t);
+    void rotate_right(int t);
 };
 
-void fill(struct Array &x) {
-    for(int i=0; i<x.length; i++) {
+void Array::fill() {
+    for(int i=0; i<length; i++) {
         int t;
         cin >> t;
-        x.A[i] = t;
+        A[i] = t;
     }
 }
 
-void display(struct Array x) {
-    for(int i=0; i<x.length; i++) {
-        cout << x.A[i] << " ";
+void Array::display() {
+    for(int i=0; i<length; i++) {
+        cout << A[i] << " ";
     }
     cout << endl;
     return;
 }
 
-void append(struct Array &x, int t) {
-    if(x.length == x.size)
+void Array::append(int t) {
+    if(length == size)
         cout << "Can't append, maximum limit reached";
     else {
-        x.A[x.length] = t;
-        x.length++;
-        // display(x);
+        A[length] = t;
+        length++;
     }
 }
 
-void insert(struct Array &x, int el, int t) {
-    if(x.length == x.size)
+void Array::insert(int t, int idx) {
+    if(length == size)
         cout << "Array has reached size limit. No more elements can be added\n";
-    else if(t>x.length)
+    else if(idx > length)
         cout << "Index does not lie in the array range\n";
     else {
-        for(int i=x.length-1; i>=t;i--)
-            x.A[i+1] = x.A[i];
-        x.A[t] = el;
-        x.length++;
-        display(x);
+        for(int i=length-1; i>=idx; i--)
+            A[i+1] = A[i];
+        A[idx] = t;
+        length++;
     }
+    cout << "Array after insertion : ";
+    display();
 }
 
-void delete_elem(struct Array &x, int t) {
-    if(t>=x.length)
+void Array::deleteAt(int idx) {
+    if(idx >= length)
         cout << "Index lies beyond length of array\n";
     else {
-        for(int i=t; i<x.length; i++)
-            x.A[i] = x.A[i+1];
-        x.length--;
-        display(x);
+        for(int i=idx; i<length; i++)
+            A[i] = A[i+1];
+        length--;
+        cout << "Array after deletion : ";
+        display();
     }
 }
 
-int search(struct Array x, int t)  {
-    for(int i=0; i<x.length; i++) {
-        if(x.A[i] == t)
+int Array::search(int t) {
+    for(int i=0; i<length; i++) {
+        if(A[i] == t)
             return i;
     }
     return -1;
 }
 
-int get(struct Array x, int i) {
-    if(i >= x.length) {
+int Array::get(int idx) {
+    if(idx >= length) {
         cout << "The index does not exist in the array\n";
         return -1;
     }
     else {
-        return x.A[i];
+        return A[idx];
     }
 }
 
-void set(struct Array &x, int t, int i) {
-    if(i >= x.length)
+void Array::set(int t, int idx) {
+    if(idx >= length)
         cout << "The index does not exist in the array\n";
     else
-        x.A[i] = t;
-    display(x);
+        A[idx] = t;
+    cout << "New array : ";
+    display();
 }
 
-int max(struct Array x) {
-    int t = x.A[0];
-    for(int i=0; i<x.length; i++) {
-        if(x.A[i] > t)
-            t = x.A[i];
+int Array::max() {
+    int t = A[0];
+    for(int i=0; i<length; i++) {
+        if(A[i] > t)
+            t = A[i];
     }
     return t;
 }
 
-int min(struct Array x) {
-    int t = x.A[0];
-    for(int i=0; i<x.length; i++) {
-        if(x.A[i] < t)
-            t = x.A[i];
+int Array::min() {
+    int t = A[0];
+    for(int i=0; i<length; i++) {
+        if(A[i] < t)
+            t = A[i];
     }
     return t;
 }
 
-int sum(struct Array x) {
+int Array::sum() {
     int t = 0;
-    for(int i=0; i<x.length; i++) {
-        t += x.A[i];
+    for(int i=0; i<length; i++) {
+        t += A[i];
     }
     return t;
 }
 
-double avg(struct Array x) {
-    return (double)sum(x)/x.length;
+double Array::avg() {
+    return (double)sum()/length;
 }
 
-void reverse(struct Array &x) {
+void Array::reverse() {
     int i = 0;
-    int j = x.length-1;
+    int j = length-1;
     while(i<j) {
-        swap(x.A[i], x.A[j]);
+        swap(A[i], A[j]);
         i++;
         j--;
     }
-    display(x);
+    display();
 }
 
-void rotate_left(struct Array &x, int t) {
-    t = t%x.length;
-    struct Array y = {{}, 10, 0};
-    for(int i=t; i<x.length; i++) {
-        append(y, x.A[i]);
+void Array::rotate_left(int t) {
+    t = t%length;
+    Array y(10, 0);
+    for(int i=t; i<length; i++) {
+        y.append(A[i]);
     }
     for(int i=0; i<t; i++) {
-        append(y, x.A[i]);
+        y.append(A[i]);
     }
-    x = y;
-    display(x);
+    for(int i=0; i<length; i++) {
+        A[i] = y.A[i];
+    }
+    display();
 }
 
-void rotate_right(struct Array &x, int t) {
-    t = t%x.length;
-    struct Array y = {{}, 10, 0};
-    for(int i=x.length-1; i>(x.length-1-t); i--) {
-        append(y, x.A[i]);
+void Array::rotate_right(int t) {
+    t = t%length;
+    Array y(10, 0);
+    for(int i=length-1; i>length-1-t; i--) {
+        y.append(A[i]);
     }
-    for(int i=0; i<x.length-t; i++) {
-        append(y, x.A[i]);
+    for(int i=0; i<length-t; i++) {
+        y.append(A[i]);
     }
-    x = y;
-    display(x);
+    for(int i=0; i<length; i++) {
+        A[i] = y.A[i];
+    }
+    display();
 }
 
 int main() {
-    struct Array arr = {{2,3,4,5,6}, 10,5};
-    return 0;
+    int a=10,b=2;
+    while(a>b) {
+        cout << "Enter length of array : ";
+        cin >> a;
+        cout << "Enter maximum size of the array : ";
+        cin >> b;
+        if(a>b)
+            cout << "\nArray length can't be greater than maximum size\n\n";
+    }
+    Array arr(b,a);
+
+    cout << "Enter elements of the array : ";
+    arr.fill();
+    cout << "\n";
+
+    cout << "The array created is : ";
+    arr.display();
+    cout << "\n";
+
+    cout << "Enter value to append at the end : ";
+    cin >> a;
+    arr.append(a);
+    cout << "The modified array is : ";
+    arr.display();
+    cout << "\n";
+
+    cout << "Enter value to insert in the array : ";
+    cin >> a;
+    cout << "Enter index at which you want to insert this value : ";
+    cin >> b;
+    arr.insert(a,b);
+    cout << "\n";
+
+    cout << "Enter index that you wish to delete : ";
+    cin >> a;
+    arr.deleteAt(a);
+    cout << "\n";
+
+    cout << "Enter value you wish to search for : ";
+    cin >> a;
+    b = arr.search(a);
+    if(b==-1)
+        cout << "This element is not present in the array";
+    else
+        cout << "Given element is present at index : " << b;
+    cout << "\n\n";
+
+    cout << "Enter index to get value at that index : ";
+    cin >> a;
+    b = arr.get(a);
+    if(b!=-1)
+        cout << "Value at given index is : " << b;
+    cout << "\n\n";
+
+    cout << "Enter value that you want to set in the array : ";
+    cin >> a;
+    cout << "Enter index : ";
+    cin >> b;
+    arr.set(a,b);
+    cout << "\n";
+
+    cout << "Max element : " << arr.max() << "\nMinimum element : " << arr.min() << "\nSum of all elements : " << arr.sum() << "\nAverage : "  << arr.avg();
+
+    cout << "\n\nReverse of the array is : ";
+        arr.reverse();
+    cout << "\n";
+
+    cout << "Enter value by which you wish to left rotate the array : ";
+    cin >> a;
+    cout << "Original array : ";
+    arr.display();
+    cout << "Rotated array : ";
+    arr.rotate_left(a);
+    cout << "\n";
+
+    cout << "Enter value by which you wish to right rotate the array : ";
+    cin >> a;
+    cout << "Original array : ";
+    arr.display();
+    cout << "Rotated array : ";
+    arr.rotate_right(a);
 }
