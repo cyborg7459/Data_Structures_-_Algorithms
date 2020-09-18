@@ -7,23 +7,35 @@ struct Array {
   int length;
 };
 
-void fill(struct Array x, int n) {
-    for(int i=0;i <n; i++) {
+void fill(struct Array &x) {
+    for(int i=0; i<x.length; i++) {
         int t;
         cin >> t;
         x.A[i] = t;
     }
 }
 
-void display(struct Array x, int n) {
-    for(int i=0;i<n;i++) {
+void display(struct Array x) {
+    for(int i=0; i<x.length; i++) {
         cout << x.A[i] << " ";
     }
     cout << endl;
     return;
 }
 
-void insert(struct Array x, int el, int t) {
+void append(struct Array &x, int t) {
+    if(x.length == x.size)
+        cout << "Can't append, maximum limit reached";
+    else {
+        cout << "Length : " << x.length << "\n";
+        x.A[x.length] = t;
+        x.length++;
+        cout << "Length : " << x.length << "\n";
+        display(x);
+    }
+}
+
+void insert(struct Array &x, int el, int t) {
     if(x.length == x.size)
         cout << "Array has reached size limit. No more elements can be added\n";
     else if(t>x.length)
@@ -33,7 +45,19 @@ void insert(struct Array x, int el, int t) {
             x.A[i+1] = x.A[i];
         x.A[t] = el;
         x.length++;
-        display(x,x.length);
+        cout << "Length : " << x.length << "\n";
+        display(x);
+    }
+}
+
+void delete_elem(struct Array &x, int t) {
+    if(t>=x.length)
+        cout << "Index lies beyond length of array\n";
+    else {
+        for(int i=t; i<x.length; i++)
+            x.A[i] = x.A[i+1];
+        x.length--;
+        display(x);
     }
 }
 
@@ -60,8 +84,8 @@ int main() {
     arr.A = x;
 
     cout << "Enter elements of the array : ";
-    fill(arr, n);
-    display(arr, n);
+    fill(arr);
+    display(arr);
 
     int el, idx;
     cout << "Enter element to add : ";
@@ -69,6 +93,16 @@ int main() {
     cout << "Enter index : ";
     cin >> idx;
     insert(arr, el, idx);
+
+    int app;
+    cout << "Enter element to append : ";
+    cin >> app;
+    append(arr, app);
+
+    int del;
+    cout << "Enter element to delete : ";
+    cin >> del;
+    delete_elem(arr, del);
 
     return 0;
 }
