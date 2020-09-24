@@ -17,7 +17,6 @@ void insertion_sort(int arr[], int n) {
                 if(temp==0)
                     break;
             }
-
         }
         cur++;
     }
