@@ -20,6 +20,6 @@ void perm(char s[], int k) {
 }
 
 int main() {
-    char s[] = "Helo";
+    char s[] = "shreyash";
     perm(s, 0);
 }
