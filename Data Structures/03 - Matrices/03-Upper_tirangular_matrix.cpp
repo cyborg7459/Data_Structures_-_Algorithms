@@ -38,12 +38,7 @@ int UpperTriangular::get(int i, int j) {
 void UpperTriangular::display() {
     for(int i=1; i<=n; i++) {
         for(int j=1; j<=n; j++) {
-            if(i<=j) {
-                int t = ((i-1)*(2*n-i+2))/2;
-                cout << A[t+j-i] << " ";
-            }
-            else
-                cout << "0 ";
+            cout << get(i,j) << " ";
         }
         cout << "\n";
     }
