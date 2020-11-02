@@ -11,3 +11,4 @@ Contains all the practice code and examples for different Data Structures and Al
 * Arrays
 * Strings
 * Matrices
+* Stack
