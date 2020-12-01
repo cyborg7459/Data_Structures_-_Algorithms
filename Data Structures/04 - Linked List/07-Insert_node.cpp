@@ -31,7 +31,10 @@ void display(Node *p) {
 }
 
 void insert(Node *p,int n, int num, int pos) {
-    Node *ptr = first;
+    if(pos<0 || pos>num) {
+        cout << "Please enter valid position\n";
+        return;
+    }
     Node *q = NULL;
     if(pos==0) {
         Node *t = new Node;
@@ -42,12 +45,11 @@ void insert(Node *p,int n, int num, int pos) {
     else {
         while(pos--) {
             q = p;
-            ptr = p->next;
             p = p->next;
         }
         Node *t = new Node;
-        t->next = ptr;
         t->data = num;
+        t->next = q->next;
         q->next = t;
     }
     display(first);
@@ -56,5 +58,5 @@ void insert(Node *p,int n, int num, int pos) {
 int main() {
     int arr[10] = {0,1,2,3,4,5,6,7,8,9};
     createLinkedList(arr, 10);
-    insert(first, 10, 31, 0);
+    insert(first, 10, 31, 7);
 }
