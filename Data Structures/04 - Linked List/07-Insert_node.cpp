@@ -43,14 +43,12 @@ void insert(Node *p,int n, int num, int pos) {
         first = t;
     }
     else {
-        while(pos--) {
-            q = p;
+        while(pos-->1)
             p = p->next;
-        }
         Node *t = new Node;
         t->data = num;
-        t->next = q->next;
-        q->next = t;
+        t->next = p->next;
+        p->next = t;
     }
     display(first);
 }
@@ -58,5 +56,5 @@ void insert(Node *p,int n, int num, int pos) {
 int main() {
     int arr[10] = {0,1,2,3,4,5,6,7,8,9};
     createLinkedList(arr, 10);
-    insert(first, 10, 31, 7);
+    insert(first, 10, 31, 6);
 }
