@@ -4,12 +4,6 @@ using namespace std;
 int Binary_Search(int arr[], int low, int high, int num) {
     if(low > high)
         return -1;
-    else if(low==high) {
-        if(arr[low]==num)
-            return low;
-        else
-            return -1;
-    }
     else {
         int mid = (low+high)/2;
         if(arr[mid] == num)
