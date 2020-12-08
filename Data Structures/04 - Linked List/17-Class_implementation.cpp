@@ -18,6 +18,7 @@ public:
     void Insert(int index, int x);
     void Delete(int index);
     int Length();
+    void ReversePrint();
 };
 
 LinkedList::LinkedList(int A[], int n) {
@@ -43,6 +44,31 @@ LinkedList::~LinkedList() {
         p = first;
     }
     cout << "Destructing the Linked List\n";
+}
+
+void LinkedList::ReversePrint() {
+    Node* p = first;
+    Node* q = nullptr;
+    while(p!=NULL) {
+        Node* temp = p;
+        if(p==first) {
+            q = p;
+            p = p->next;
+            temp->next = NULL;
+        }
+        else {
+            temp->next = q;
+            q = p;
+            p = p->next;
+        }
+    }
+    first = q;
+
+    Node* t = first;
+    while(t!=NULL) {
+        cout << t->data << "\n";
+        t = t->next;
+    }
 }
 
 void LinkedList::Display() {
@@ -110,10 +136,11 @@ int LinkedList::Length() {
 int main() {
     int arr[] = {1,2,3,4,5,6,7,8,9};
     LinkedList A(arr, 9);
-    A.Display();
-    A.Insert(3,17);
-    A.Display();
-    A.Delete(8);
-    A.Display();
-    cout << A.Length() << "\n";
+    A.ReversePrint();
+    // A.Display();
+    // A.Insert(3,17);
+    // A.Display();
+    // A.Delete(8);
+    // A.Display();
+    // cout << A.Length() << "\n";
 }
