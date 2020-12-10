@@ -5,7 +5,7 @@ Contains all the practice code and examples for different Data Structures and Al
 
 * Recursion
 * Backtracking
-* Searching
+* Searching 
 
 #### Data Structures done
 
