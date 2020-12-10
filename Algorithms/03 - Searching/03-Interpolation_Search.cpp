@@ -39,15 +39,15 @@ int Interpolation_Search(int arr[], int low, int high, int num) {
 int main() {
     int arr[10] = {1,2,3,4,5,6,7,9,10};
     cout << "UNIFORMLY DISTIBUTED DATASET\n====================================\n";
-    cout << Interpolation_Search(arr, 0, 8, 9) << "\n";
+    Interpolation_Search(arr, 0, 8, 9);
     cout << "Number of iterations required by Interpolation Search : " << interpol_count << "\n";
-    cout << Binary_Search(arr, 0, 8, 9) << "\n";
+    Binary_Search(arr, 0, 8, 9);
     cout << "Number of iterations required by Binary Search : " << bin_count << "\n";
     int arr1[10] = {1,1,1,2,2,2,2,9,1000};
     interpol_count = 0, bin_count = 0;
     cout << "\n\nNON-UNIFORMLY DISTIBUTED DATASET\n====================================\n";
-    cout << Interpolation_Search(arr1, 0, 8, 9) << "\n";
+    Interpolation_Search(arr1, 0, 8, 9);
     cout << "Number of iterations required by Interpolation Search : " << interpol_count << "\n";
-    cout << Binary_Search(arr1, 0, 8, 9) << "\n";
+    Binary_Search(arr1, 0, 8, 9);
     cout << "Number of iterations required by Binary Search : " << bin_count << "\n";
 }
