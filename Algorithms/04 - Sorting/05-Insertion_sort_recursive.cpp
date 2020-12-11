@@ -12,7 +12,7 @@ void insertion_sort_rec(int arr[], int n) {
         return;
     insertion_sort_rec(arr, n-1);
     int cur = n-1;
-    while(cur > 0 && arr[cur]<arr[cur-1]) {
+    while(cur > 0 && arr[cur] < arr[cur-1]) {
         swap(arr[cur], arr[cur-1]);
         cur--;
     }
