@@ -12,7 +12,7 @@ void selection_sort(int arr[], int n) {
     while(start < n) {
         min = arr[start];
         temp = start;
-        for(int i = start; i<n; i++) {
+        for(int i = start; i < n; i++) {
             if(arr[i] < min) {
                 min = arr[i];
                 temp = i;
