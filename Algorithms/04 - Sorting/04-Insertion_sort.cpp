@@ -14,7 +14,7 @@ void insertion_sort(int arr[], int n) {
             while(arr[temp] < arr[temp-1]) {
                 swap(arr[temp], arr[temp-1]);
                 temp--;
-                if(temp==0)
+                if(temp == 0)
                     break;
             }
         }
