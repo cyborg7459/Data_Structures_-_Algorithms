@@ -55,5 +55,5 @@ int main() {
     int arr[10] = {1,5,3,6,9,4,8,10,7,2};
     mergeSort(arr,0,9);
     cout << "=========================================================\nFinal sorted array : \n";
-    print(arr, 0,9);
+    print(arr,0,9);
 }
