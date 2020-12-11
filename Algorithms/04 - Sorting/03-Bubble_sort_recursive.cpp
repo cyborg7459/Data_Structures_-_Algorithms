@@ -7,7 +7,7 @@ void print(int arr[], int n){
 }
 
 void bubble_sort_rec(int arr[], int n) {
-    cout << "BUBBLE SORT RECURSIVE CALLED\n";
+    cout << "BUBBLE SORT RECURSIVE CALLED !!\n";
     if(n==1)
         return;
     else {
