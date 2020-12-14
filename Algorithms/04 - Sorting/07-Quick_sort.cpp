@@ -9,7 +9,7 @@ void print(int arr[], int l, int r) {
 
 int partition(int arr[], int l, int r) {
     int el = arr[r], count=0;
-    for(int i=l; i<r; i++) {
+    for(int i=l; i<=r; i++) {
         if(arr[i] < el)
             count++;
     }
@@ -27,7 +27,7 @@ int partition(int arr[], int l, int r) {
             j++;
         }
     }
-    for(int i=0; i<r-l+1; i++) {
+    for(int i=0; i<=r-l; i++) {
         arr[l+i] = temp[i];
     }
     return idx;
@@ -42,7 +42,7 @@ void quickSort(int arr[], int l, int r) {
 }
 
 int main() {
-    int arr[10] = {1,5,3,8,10,4,9,7,6,2};
+    int arr[10] = {1,5,2,8,1,4,9,2,6,2};
     quickSort(arr, 0, 9);
     print(arr, 0, 9);
 }
