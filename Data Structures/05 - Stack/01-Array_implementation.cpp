@@ -32,7 +32,6 @@ int push(struct Stack &st, int num) {
 int pop(struct Stack &st) {
     if(isEmpty(st)) {
         cout << "Stack is empty. Nothing to pop\n";
-        cout.flush();
         return -1;
     }
     int num = top(st);
