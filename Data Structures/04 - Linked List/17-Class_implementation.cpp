@@ -47,28 +47,20 @@ LinkedList::~LinkedList() {
 }
 
 void LinkedList::ReversePrint() {
-    Node* p = first;
-    Node* q = nullptr;
+    Node *p = first, *q = nullptr;
+    q = p;
+    p = p->next;
+    q->next = NULL;
     while(p!=NULL) {
-        Node* temp = p;
-        if(p==first) {
-            q = p;
-            p = p->next;
-            temp->next = NULL;
-        }
-        else {
-            temp->next = q;
-            q = p;
-            p = p->next;
-        }
+        Node *temp = p;
+        p = p->next;
+        temp->next = q;
+        q = temp;
     }
     first = q;
-
-    Node* t = first;
-    while(t!=NULL) {
-        cout << t->data << "\n";
-        t = t->next;
-    }
+    for(Node *t = first; t!=NULL; t=t->next)
+        cout << t->data << " ";
+    cout << "\n";
 }
 
 void LinkedList::Display() {
