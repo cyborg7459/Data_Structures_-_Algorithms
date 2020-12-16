@@ -26,7 +26,7 @@ void check(string s, char stack[]) {
 }
 
 int main() {
-    string name = "(My name is Shreyash ((Kumar (Singh (!!)))))";
+    string name = "(My name is Shreyash ((Kumar (Singh (!!)))))(";
     string name2 = "(Nice))(to meet you";
     char stack[1000];
     check(name, stack);
