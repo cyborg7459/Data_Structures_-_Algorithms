@@ -15,3 +15,4 @@ Contains all the practice code and examples for different Data Structures and Al
 * Matrices
 * Linked List
 * Stacks
+* Queues
