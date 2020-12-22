@@ -11,7 +11,7 @@ Contains all the practice code and examples for different Data Structures and Al
 #### Data Structures done
 
 * Arrays
-* String
+* Strings
 * Matrices
 * Linked List
 * Stacks
