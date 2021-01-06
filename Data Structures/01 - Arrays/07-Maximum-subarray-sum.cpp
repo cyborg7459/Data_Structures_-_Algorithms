@@ -2,15 +2,17 @@
 using namespace std;
 
 int max_sum(int arr[], int n) {
-    int best{}, sum{};
+    int res = 0, temp = 0;
     for(int i=0; i<n; i++) {
-        sum = max(arr[i], sum+arr[i]);
-        best = max(sum, best);
+        temp += arr[i];
+        res = max(res, temp);
+        if(temp < 0)
+            temp = 0;
     }
-    return best;
+    return res;
 }
 
 int main() {
-    int arr[8] = {-1,2,4,-3,5,2,-5,2};
-    cout << max_sum(arr, 8) << endl;
+    int arr[8] = {1,1,1,-1,-1,1,1,1};
+    cout << max_sum(arr, 8);
 }
