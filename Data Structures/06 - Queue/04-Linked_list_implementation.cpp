@@ -23,7 +23,7 @@ public:
 };
 
 bool Queue::isEmpty() {
-    if(front > rear || rear == nullptr)
+    if(rear == nullptr)
         return true;
     else
         return false;
