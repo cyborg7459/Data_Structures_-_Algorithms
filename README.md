@@ -16,3 +16,4 @@ Contains all the practice code and examples for different Data Structures and Al
 * Linked List
 * Stacks
 * Queues
+* Trees
