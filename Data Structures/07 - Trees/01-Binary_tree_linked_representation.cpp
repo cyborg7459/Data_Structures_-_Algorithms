@@ -22,6 +22,7 @@ public:
     void postorder(Binary_Tree_Node *start);
     void levelorder(Binary_Tree_Node *start);
     int height();
+    int countNodes(Binary_Tree_Node *start);
 };
 
 Binary_Tree::Binary_Tree(int arr[]) {
@@ -86,6 +87,16 @@ void Binary_Tree::levelorder(Binary_Tree_Node *start) {
     }
 }
 
+int Binary_Tree::countNodes(Binary_Tree_Node *start) {
+    Binary_Tree_Node *node = start;
+    static int count = 0;
+    if(node == nullptr) return 0;
+    count++;
+    countNodes(node->left_child);
+    countNodes(node->right_child);
+    return count;
+}
+
 int main() {
     int arr[15] = {1,2,3,-1,-1,4,5,-1,6,-1,-1,7,-1, -1, -1};
     Binary_Tree B(arr);
@@ -97,4 +108,6 @@ int main() {
     B.inorder(B.root);
     cout << "\nLevel-order traversal : ";
     B.levelorder(B.root);
+    cout << "\nNumber of nodes in the given tree are : ";
+    cout << B.countNodes(B.root);
 }
