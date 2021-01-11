@@ -21,8 +21,9 @@ public:
     void inorder(Binary_Tree_Node *start);
     void postorder(Binary_Tree_Node *start);
     void levelorder(Binary_Tree_Node *start);
-    int height();
+    int height(Binary_Tree_Node *start);
     int countNodes(Binary_Tree_Node *start);
+    int count_leaf_nodes();
 };
 
 Binary_Tree::Binary_Tree(int arr[]) {
@@ -95,6 +96,34 @@ int Binary_Tree::countNodes(Binary_Tree_Node *start) {
     return x + y + 1;
 }
 
+int Binary_Tree::height(Binary_Tree_Node *start) {
+    Binary_Tree_Node *node = start;
+    if(node == nullptr) return 0;
+    int x = height(node->left_child);
+    int y = height(node->right_child);
+    if(x>y)
+        return x+1;
+    else
+        return y+1;
+}
+
+int Binary_Tree::count_leaf_nodes() {
+    int res = 0;
+    queue<Binary_Tree_Node*> q;
+    q.push(root);
+    while(!q.empty()) {
+        Binary_Tree_Node *temp = q.front();
+        q.pop();
+        if(temp->right_child == nullptr && temp->left_child==nullptr)
+            res++;
+        if(temp->left_child != nullptr)
+            q.push(temp->left_child);
+        if(temp->right_child != nullptr)
+            q.push(temp->right_child);
+    }
+    return res;
+}
+
 int main() {
     int arr[15] = {1,2,3,-1,-1,4,5,-1,6,-1,-1,7,-1, -1, -1};
     Binary_Tree B(arr);
@@ -108,7 +137,8 @@ int main() {
     B.levelorder(B.root);
     cout << "\nNumber of nodes in the given tree are : ";
     cout << B.countNodes(B.root);
-    cout << "\n" << B.countNodes(B.root);
-    cout << "\n" << B.countNodes(B.root);
-    cout << "\n" << B.countNodes(B.root);
+    cout << "\nHeight of the given tree is : ";
+    cout << B.height(B.root)-1;
+    cout << "\nNumber of leaf nodes in the given tree is : ";
+    cout << B.count_leaf_nodes();
 }
