@@ -89,12 +89,10 @@ void Binary_Tree::levelorder(Binary_Tree_Node *start) {
 
 int Binary_Tree::countNodes(Binary_Tree_Node *start) {
     Binary_Tree_Node *node = start;
-    static int count = 0;
     if(node == nullptr) return 0;
-    count++;
-    countNodes(node->left_child);
-    countNodes(node->right_child);
-    return count;
+    int x = countNodes(node->left_child);
+    int y = countNodes(node->right_child);
+    return x + y + 1;
 }
 
 int main() {
@@ -110,4 +108,7 @@ int main() {
     B.levelorder(B.root);
     cout << "\nNumber of nodes in the given tree are : ";
     cout << B.countNodes(B.root);
+    cout << "\n" << B.countNodes(B.root);
+    cout << "\n" << B.countNodes(B.root);
+    cout << "\n" << B.countNodes(B.root);
 }
