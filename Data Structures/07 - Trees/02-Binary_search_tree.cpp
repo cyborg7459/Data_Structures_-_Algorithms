@@ -6,6 +6,10 @@ public:
     int data;
     Tree_node *left_child;
     Tree_node *right_child;
+    Tree_node() {
+        left_child = nullptr;
+        right_child = nullptr;
+    }
     Tree_node(int x) {
         data = x;
         left_child = nullptr;
@@ -16,10 +20,13 @@ public:
 class BST {
 public:
     Tree_node *root;
+    BST() {
+        root = nullptr;
+    }
     BST(std::vector<int> v);
     void inorder(Tree_node *start);
     Tree_node* search(int key, Tree_node *start);
-    void insert_in_BST(int key, Tree_node *node);
+    Tree_node* insert_in_BST(int key, Tree_node *node);
 };
 
 BST::BST(std::vector<int> v) {
@@ -71,42 +78,52 @@ Tree_node* BST::search(int key, Tree_node *start) {
     }
 }
 
-void BST::insert_in_BST(int key, Tree_node *node) {
-    if(node->data == key) return;
-    if(node->data > key) {
-        if(node->left_child == nullptr) {
-            Tree_node *x = new Tree_node(key);
-            node->left_child = x;
-            return;
-        }
-        insert_in_BST(key, node->left_child);
+Tree_node *temp;
+Tree_node* BST::insert_in_BST(int key, Tree_node *node) {
+    Tree_node *t;
+    if(node == nullptr) {
+        t = new Tree_node(key);
+        temp = t;
+        return t;
     }
-    else {
-        if(node->right_child == nullptr) {
-            Tree_node *x = new Tree_node(key);
-            node->right_child = x;
-            return;
-        }
-        insert_in_BST(key, node->right_child);
-    }
+    if(node->data > key)
+        node->left_child = insert_in_BST(key, node->left_child);
+    else if(node->data < key)
+        node->right_child = insert_in_BST(key, node->right_child);
+    else
+        return node;
 }
 
 int main() {
+    // CREATING A BST USING VECTOR
     std::vector<int> v = {40,30,70,-1,35,55,75,-1,-1,45,65,-1,-1,-1,-1,-1,-1};
     BST k(v);
     k.inorder(k.root);
-    cout << "\n";
-    // for(int i = 44; i<=77; i++) {
-    //     cout << i << " : ";
-    //     k.search(i, k.root);
-    //     cout << "Number of steps : " << steps << "\n";
-    //     steps = 0;
-    // }
+
+    // SEARCHING FOR ELEMENTS IN A BST
+    for(int i = 44; i<=77; i++) {
+        cout << i << " : ";
+        k.search(i, k.root);
+        cout << "Number of steps : " << steps << "\n";
+        steps = 0;
+    }
+
+    // INSERTING ELEMENTS TO A BST
     for(int i=47; i<70; i+=4) {
-        k.insert_in_BST(i, k.root);
+        Tree_node *x = k.insert_in_BST(i, k.root);
         cout << "Inserted " << i << "\n";
         k.inorder(k.root);
         cout << "\n";
     }
+
+    // CREATING A BST USING INSERT FUNCTION
+    BST k1;
+    k1.root = k1.insert_in_BST(10, k1.root);
+    k1.insert_in_BST(12, k1.root);
+    k1.insert_in_BST(30, k1.root);
+    k1.insert_in_BST(22, k1.root);
+    k1.insert_in_BST(45, k1.root);
+    k1.inorder(k1.root);
+
     return 0;
 }
