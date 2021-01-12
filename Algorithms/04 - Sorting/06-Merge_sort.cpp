@@ -8,7 +8,7 @@ void print(int arr[], int l, int r) {
 }
 
 void merge(int arr[],int l,int r) {
-    cout << "Calling merge funcion for " << l << " to " << r << "\nThe array section after merging is : ";
+    cout << "Calling merge function for " << l << " to " << r << "\nThe array section after merging is : ";
     int n1 = (r-l)/2+1;
     int n2 = (r-l+1)-n1;
     int arr1[n1], arr2[n2];
