@@ -24,6 +24,7 @@ public:
         root = nullptr;
     }
     BST(std::vector<int> v);
+    BST(std::vector<int> v, int n);
     void inorder(Tree_node *start);
     Tree_node* search(int key, Tree_node *start);
     Tree_node* insert_in_BST(int key, Tree_node *node);
@@ -46,6 +47,33 @@ BST::BST(std::vector<int> v) {
         if(r != -1) {
             node->right_child = new Tree_node(r);
             q.push(node->right_child);
+        }
+    }
+}
+
+BST::BST(std::vector<int> v, int n) {
+    root = new Tree_node(v[0]);
+    for(int i=1; i<n; i++) {
+        Tree_node *node = root;
+        while(true) {
+            if(node->data > v[i]) {
+                if(node->left_child == nullptr) {
+                    node->left_child = new Tree_node(v[i]);
+                    break;
+                }
+                else
+                    node = node->left_child;
+            }
+            else if(node->data < v[i]) {
+                if(node->right_child == nullptr) {
+                    node->right_child = new Tree_node(v[i]);
+                    break;
+                }
+                else
+                    node = node->right_child;
+            }
+            else
+                break;
         }
     }
 }
@@ -95,35 +123,40 @@ Tree_node* BST::insert_in_BST(int key, Tree_node *node) {
 }
 
 int main() {
-    // CREATING A BST USING VECTOR
-    std::vector<int> v = {40,30,70,-1,35,55,75,-1,-1,45,65,-1,-1,-1,-1,-1,-1};
-    BST k(v);
-    k.inorder(k.root);
+    // CREATING A BST USING VECTOR WITH LEVEL ORDER GIVEN
+    // std::vector<int> v = {40,30,70,-1,35,55,75,-1,-1,45,65,-1,-1,-1,-1,-1,-1};
+    // BST k(v);
+    // k.inorder(k.root);
 
     // SEARCHING FOR ELEMENTS IN A BST
-    for(int i = 44; i<=77; i++) {
-        cout << i << " : ";
-        k.search(i, k.root);
-        cout << "Number of steps : " << steps << "\n";
-        steps = 0;
-    }
+    // for(int i = 44; i<=77; i++) {
+    //     cout << i << " : ";
+    //     k.search(i, k.root);
+    //     cout << "Number of steps : " << steps << "\n";
+    //     steps = 0;
+    // }
 
     // INSERTING ELEMENTS TO A BST
-    for(int i=47; i<70; i+=4) {
-        Tree_node *x = k.insert_in_BST(i, k.root);
-        cout << "Inserted " << i << "\n";
-        k.inorder(k.root);
-        cout << "\n";
-    }
+    // for(int i=47; i<70; i+=4) {
+    //     Tree_node *x = k.insert_in_BST(i, k.root);
+    //     cout << "Inserted " << i << "\n";
+    //     k.inorder(k.root);
+    //     cout << "\n";
+    // }
+
+    // CREATING A BST FROM A RANDOM VECTOR
+    // std::vector<int> v1 = {9,15,5,5,5,20,16,8,12,3,6};
+    // BST k1(v1, v1.size());
+    // k1.inorder(k1.root);
 
     // CREATING A BST USING INSERT FUNCTION
-    BST k1;
-    k1.root = k1.insert_in_BST(10, k1.root);
-    k1.insert_in_BST(12, k1.root);
-    k1.insert_in_BST(30, k1.root);
-    k1.insert_in_BST(22, k1.root);
-    k1.insert_in_BST(45, k1.root);
-    k1.inorder(k1.root);
+    // BST k2;
+    // k2.root = k2.insert_in_BST(10, k2.root);
+    // k2.insert_in_BST(12, k2.root);
+    // k2.insert_in_BST(30, k2.root);
+    // k2.insert_in_BST(22, k2.root);
+    // k2.insert_in_BST(45, k2.root);
+    // k2.inorder(k2.root);
 
     return 0;
 }
