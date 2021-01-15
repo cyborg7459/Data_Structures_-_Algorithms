@@ -46,9 +46,6 @@ BST::BST(std::vector<int> v, int n) {
                 node->right_child = temp;
                 node = temp;
             }
-            else if(st.empty()) {
-
-            }
             else {
                 node = st.top();
                 st.pop();
