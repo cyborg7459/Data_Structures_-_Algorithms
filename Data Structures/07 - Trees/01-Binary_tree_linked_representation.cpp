@@ -24,6 +24,7 @@ public:
     int height(Binary_Tree_Node *start);
     int countNodes(Binary_Tree_Node *start);
     int count_leaf_nodes();
+    void invertBinaryTree(Binary_Tree_Node *start);
 };
 
 Binary_Tree::Binary_Tree(int arr[]) {
@@ -124,6 +125,16 @@ int Binary_Tree::count_leaf_nodes() {
     return res;
 }
 
+void Binary_Tree::invertBinaryTree(Binary_Tree_Node *start) {
+    Binary_Tree_Node *node = start;
+    if(node == nullptr) return;
+    Binary_Tree_Node *temp = node->left_child;
+    node->left_child = node->right_child;
+    node->right_child = temp;
+    invertBinaryTree(node->left_child);
+    invertBinaryTree(node->right_child);
+}
+
 int main() {
     int arr[15] = {1,2,3,-1,-1,4,5,-1,6,-1,-1,7,-1, -1, -1};
     Binary_Tree B(arr);
@@ -135,10 +146,21 @@ int main() {
     B.inorder(B.root);
     cout << "\nLevel-order traversal : ";
     B.levelorder(B.root);
-    cout << "\nNumber of nodes in the given tree are : ";
-    cout << B.countNodes(B.root);
-    cout << "\nHeight of the given tree is : ";
-    cout << B.height(B.root)-1;
-    cout << "\nNumber of leaf nodes in the given tree is : ";
-    cout << B.count_leaf_nodes();
+    cout << "\n\nAfter inverting binary tree :-\n";
+    B.invertBinaryTree(B.root);
+    cout << "Pre-order traversal : ";
+    B.preorder(B.root);
+    cout << "\nPost-order traversal : ";
+    B.postorder(B.root);
+    cout << "\nIn-order traversal : ";
+    B.inorder(B.root);
+    cout << "\nLevel-order traversal : ";
+    B.levelorder(B.root);
+    // cout << "\nNumber of nodes in the given tree are : ";
+    // cout << B.countNodes(B.root);
+    // cout << "\nHeight of the given tree is : ";
+    // cout << B.height(B.root)-1;
+    // cout << "\nNumber of leaf nodes in the given tree is : ";
+    // cout << B.count_leaf_nodes();
+
 }
