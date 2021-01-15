@@ -27,7 +27,9 @@ public:
     BST(std::vector<int> v, int n);
     void inorder(Tree_node *start);
     Tree_node* search(int key, Tree_node *start);
+    int height(Tree_node *node);
     Tree_node* insert_in_BST(int key, Tree_node *node);
+    Tree_node* delete_node(int key, Tree_node *node);
 };
 
 BST::BST(std::vector<int> v) {
@@ -106,6 +108,14 @@ Tree_node* BST::search(int key, Tree_node *start) {
     }
 }
 
+int BST::height(Tree_node *node) {
+    if(node==null) return 0;
+    int x = height(node->left_child);
+    int y = height(node->right_child);
+    if(x>y) return x+1;
+    else return y+1;
+}
+
 Tree_node *temp;
 Tree_node* BST::insert_in_BST(int key, Tree_node *node) {
     Tree_node *t;
@@ -119,6 +129,20 @@ Tree_node* BST::insert_in_BST(int key, Tree_node *node) {
     else if(node->data < key)
         node->right_child = insert_in_BST(key, node->right_child);
     return node;
+}
+
+Tree_node* BST::delete_node(int key, Tree_node *node) {
+    if(key < node->data)
+        p->left_child = delete_node(key, p->left_child);
+    else if(key > node->data)
+        p->right_child = delete_node(key, p->right_child);
+    else {
+        if(height(node->left_child) > height(node->right_child)) {
+            Tree_node *temp = InPre(node->left_child);
+            node->data = temp->data;
+            node->left_child = delete_node(q->data, p->left_child);
+        }
+    }
 }
 
 int main() {
