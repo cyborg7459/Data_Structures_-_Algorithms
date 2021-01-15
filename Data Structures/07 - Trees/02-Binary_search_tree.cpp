@@ -159,6 +159,7 @@ Tree_node* BST::delete_node(int key, Tree_node *node) {
         if(node == root)
             root = nullptr;
         delete node;
+        return nullptr;
     }
     if(key < node->data)
         node->left_child = delete_node(key, node->left_child);
@@ -166,12 +167,12 @@ Tree_node* BST::delete_node(int key, Tree_node *node) {
         node->right_child = delete_node(key, node->right_child);
     else {
         if(height(node->left_child) > height(node->right_child)) {
-            Tree_node *temp = InPre(node->left_child);
+            Tree_node *temp = InPre(node);
             node->data = temp->data;
             node->left_child = delete_node(temp->data, node->left_child);
         }
         else {
-            Tree_node *temp = InSuc(node->right_child);
+            Tree_node *temp = InSuc(node);
             node->data = temp->data;
             node->right_child = delete_node(temp->data, node->right_child);
         }
@@ -205,14 +206,19 @@ int main() {
     // BST k1(v1, v1.size());
     // k1.inorder(k1.root);
 
-    // CREATING A BST USING INSERT FUNCTION
-    BST k2;
-    k2.root = k2.insert_in_BST(10, k2.root);
-    k2.insert_in_BST(12, k2.root);
-    k2.insert_in_BST(30, k2.root);
-    k2.insert_in_BST(22, k2.root);
-    k2.insert_in_BST(4, k2.root);
-    k2.inorder(k2.root);
+    // CREATING A BST USING INSERT FUNCTION AND DELETING NODES USING RECURSIVE DELETING
+    // BST k2;
+    // k2.root = k2.insert_in_BST(10, k2.root);
+    // k2.insert_in_BST(5, k2.root);
+    // k2.insert_in_BST(20, k2.root);
+    // k2.insert_in_BST(12, k2.root);
+    // k2.insert_in_BST(11, k2.root);
+    // k2.insert_in_BST(18, k2.root);
+    // k2.insert_in_BST(13, k2.root);
+    // k2.insert_in_BST(16, k2.root);
+    // k2.insert_in_BST(14, k2.root);
+    // k2.delete_node(10, k2.root);
+    // cout << "\n" << k2.root->data;
 
     return 0;
 }
