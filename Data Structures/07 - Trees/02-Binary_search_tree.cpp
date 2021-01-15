@@ -29,6 +29,8 @@ public:
     Tree_node* search(int key, Tree_node *start);
     int height(Tree_node *node);
     Tree_node* insert_in_BST(int key, Tree_node *node);
+    Tree_node* InPre(Tree_node *node);
+    Tree_node* InSuc(Tree_node *node);
     Tree_node* delete_node(int key, Tree_node *node);
 };
 
@@ -109,7 +111,7 @@ Tree_node* BST::search(int key, Tree_node *start) {
 }
 
 int BST::height(Tree_node *node) {
-    if(node==null) return 0;
+    if(node==nullptr) return 0;
     int x = height(node->left_child);
     int y = height(node->right_child);
     if(x>y) return x+1;
@@ -131,16 +133,47 @@ Tree_node* BST::insert_in_BST(int key, Tree_node *node) {
     return node;
 }
 
+Tree_node* BST::InPre(Tree_node *node) {
+    if(node->left_child == nullptr) return nullptr;
+    else {
+        node = node->left_child;
+        while(node->right_child != nullptr)
+            node = node->right_child;
+        return node;
+    }
+}
+
+Tree_node* BST::InSuc(Tree_node *node) {
+    if(node->right_child == nullptr) return nullptr;
+    else {
+        node = node->right_child;
+        while(node->left_child != nullptr)
+            node = node->left_child;
+        return node;
+    }
+}
+
 Tree_node* BST::delete_node(int key, Tree_node *node) {
+    if(node == nullptr) return nullptr;
+    if(node->left_child==nullptr && node->right_child==nullptr) {
+        if(node == root)
+            root = nullptr;
+        delete node;
+    }
     if(key < node->data)
-        p->left_child = delete_node(key, p->left_child);
+        node->left_child = delete_node(key, node->left_child);
     else if(key > node->data)
-        p->right_child = delete_node(key, p->right_child);
+        node->right_child = delete_node(key, node->right_child);
     else {
         if(height(node->left_child) > height(node->right_child)) {
             Tree_node *temp = InPre(node->left_child);
             node->data = temp->data;
-            node->left_child = delete_node(q->data, p->left_child);
+            node->left_child = delete_node(temp->data, node->left_child);
+        }
+        else {
+            Tree_node *temp = InSuc(node->right_child);
+            node->data = temp->data;
+            node->right_child = delete_node(temp->data, node->right_child);
         }
     }
 }
