@@ -82,10 +82,6 @@ BST::BST(std::vector<int> v, int n) {
     }
 }
 
-BST::BST_from_preorder(std::vector<int> v, int n) {
-    root = new Tree_node(v[0]);
-}
-
 void BST::inorder(Tree_node *start) {
     Tree_node *node = start;
     if(node == nullptr) return;
