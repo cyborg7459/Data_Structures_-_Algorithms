@@ -118,8 +118,7 @@ Tree_node* BST::insert_in_BST(int key, Tree_node *node) {
         node->left_child = insert_in_BST(key, node->left_child);
     else if(node->data < key)
         node->right_child = insert_in_BST(key, node->right_child);
-    else
-        return node;
+    return node;
 }
 
 int main() {
@@ -150,13 +149,13 @@ int main() {
     // k1.inorder(k1.root);
 
     // CREATING A BST USING INSERT FUNCTION
-    // BST k2;
-    // k2.root = k2.insert_in_BST(10, k2.root);
-    // k2.insert_in_BST(12, k2.root);
-    // k2.insert_in_BST(30, k2.root);
-    // k2.insert_in_BST(22, k2.root);
-    // k2.insert_in_BST(45, k2.root);
-    // k2.inorder(k2.root);
+    BST k2;
+    k2.root = k2.insert_in_BST(10, k2.root);
+    k2.insert_in_BST(12, k2.root);
+    k2.insert_in_BST(30, k2.root);
+    k2.insert_in_BST(22, k2.root);
+    k2.insert_in_BST(4, k2.root);
+    k2.inorder(k2.root);
 
     return 0;
 }
