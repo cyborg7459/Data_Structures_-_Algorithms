@@ -52,7 +52,6 @@ BST::BST(std::vector<int> v, int n) {
             }
         }
     }
-    cout << "Hello\n";
 }
 
 void BST::inorder(Tree_node *node) {
