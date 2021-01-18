@@ -153,7 +153,7 @@ Tree_node* BST::InSuc(Tree_node *node) {
 
 Tree_node* BST::delete_node(int key, Tree_node *node) {
     if(node == nullptr) return nullptr;
-    if(node->left_child==nullptr && node->right_child==nullptr) {
+    if(node->left_child==nullptr && node->right_child==nullptr && node->data==key) {
         if(node == root)
             root = nullptr;
         delete node;
@@ -206,16 +206,16 @@ int main() {
 
     // CREATING A BST USING INSERT FUNCTION AND DELETING NODES USING RECURSIVE DELETING
     BST k2;
-    k2.root = k2.insert_in_BST(10, k2.root);
-    k2.insert_in_BST(5, k2.root);
-    k2.insert_in_BST(20, k2.root);
-    k2.insert_in_BST(12, k2.root);
-    k2.insert_in_BST(11, k2.root);
+    k2.root = k2.insert_in_BST(5, k2.root);
+    k2.insert_in_BST(4, k2.root);
+    k2.insert_in_BST(10, k2.root);
+    k2.insert_in_BST(9, k2.root);
+    k2.insert_in_BST(16, k2.root);
     k2.insert_in_BST(18, k2.root);
     k2.insert_in_BST(13, k2.root);
     k2.insert_in_BST(16, k2.root);
     k2.insert_in_BST(14, k2.root);
-    k2.delete_node(10, k2.root);
+    k2.delete_node(1, k2.root);
     k2.inorder(k2.root);
     cout << "\n" << k2.root->data;
 
