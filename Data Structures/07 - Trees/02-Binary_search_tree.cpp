@@ -118,12 +118,10 @@ int BST::height(Tree_node *node) {
     else return y+1;
 }
 
-Tree_node *temp;
 Tree_node* BST::insert_in_BST(int key, Tree_node *node) {
     Tree_node *t;
     if(node == nullptr) {
         t = new Tree_node(key);
-        temp = t;
         return t;
     }
     if(node->data > key)
@@ -207,18 +205,19 @@ int main() {
     // k1.inorder(k1.root);
 
     // CREATING A BST USING INSERT FUNCTION AND DELETING NODES USING RECURSIVE DELETING
-    // BST k2;
-    // k2.root = k2.insert_in_BST(10, k2.root);
-    // k2.insert_in_BST(5, k2.root);
-    // k2.insert_in_BST(20, k2.root);
-    // k2.insert_in_BST(12, k2.root);
-    // k2.insert_in_BST(11, k2.root);
-    // k2.insert_in_BST(18, k2.root);
-    // k2.insert_in_BST(13, k2.root);
-    // k2.insert_in_BST(16, k2.root);
-    // k2.insert_in_BST(14, k2.root);
-    // k2.delete_node(10, k2.root);
-    // cout << "\n" << k2.root->data;
+    BST k2;
+    k2.root = k2.insert_in_BST(10, k2.root);
+    k2.insert_in_BST(5, k2.root);
+    k2.insert_in_BST(20, k2.root);
+    k2.insert_in_BST(12, k2.root);
+    k2.insert_in_BST(11, k2.root);
+    k2.insert_in_BST(18, k2.root);
+    k2.insert_in_BST(13, k2.root);
+    k2.insert_in_BST(16, k2.root);
+    k2.insert_in_BST(14, k2.root);
+    k2.delete_node(10, k2.root);
+    k2.inorder(k2.root);
+    cout << "\n" << k2.root->data;
 
     return 0;
 }
