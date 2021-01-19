@@ -45,12 +45,7 @@ int Node_Height(Tree_Node *node) {
 }
 
 int balance_factor(Tree_Node* node) {
-    int left_subtree_height=0, right_subtree_height=0;
-    if(node && node->left_child)
-        left_subtree_height = node->left_child->height;
-    if(node && node->right_child)
-        right_subtree_height = node->right_child->height;
-    return left_subtree_height - right_subtree_height;
+    return Node_Height(node->left_child) - Node_Height(node->right_child);
 }
 
 Tree_Node* AVLTree::LLRotation(Tree_Node* node) {
