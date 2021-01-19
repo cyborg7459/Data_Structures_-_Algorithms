@@ -45,7 +45,12 @@ int Node_Height(Tree_Node *node) {
 }
 
 int balance_factor(Tree_Node* node) {
-    return Node_Height(node->left_child) - Node_Height(node->right_child);
+    int left_subtree_height=0, right_subtree_height=0;
+    if(node && node->left_child)
+        left_subtree_height = node->left_child->height;
+    if(node && node->right_child)
+        right_subtree_height = node->right_child->height;
+    return left_subtree_height - right_subtree_height;
 }
 
 Tree_Node* AVLTree::LLRotation(Tree_Node* node) {
@@ -113,19 +118,19 @@ Tree_Node* AVLTree::insert_Node(int key, Tree_Node* node) {
         node->right_child = insert_Node(key, node->right_child);
     node->height = Node_Height(node);
     if(balance_factor(node) == 2 && balance_factor(node->left_child) == 1) {
-        cout << "Doing LL Rotation for node " << node->data << "\n";
+        cout << "Doing LL Rotation for node " << node->data << " while inserting " << key << "\n";
         return LLRotation(node);
     }
     else if(balance_factor(node) == 2 && balance_factor(node->left_child) == -1){
-        cout << "Doing LR Rotation for node " << node->data << "\n";
+        cout << "Doing LR Rotation for node " << node->data << " while inserting " << key << "\n";
         return LRRotationn(node);
     }
     else if(balance_factor(node) == -2 && balance_factor(node->right_child) == -1) {
-        cout << "Doing RR rotation for node " << node->data << "\n";
+        cout << "Doing RR rotation for node " << node->data << " while inserting " << key << "\n";
         return RRRotation(node);
     }
     else if(balance_factor(node) == -2 && balance_factor(node->right_child) == 1){
-        cout << "Doing RL rotation for node " << node->data << "\n";
+        cout << "Doing RL rotation for node " << node->data << " while inserting " << key << "\n";
         return RLRotation(node);
     }
     return node;
