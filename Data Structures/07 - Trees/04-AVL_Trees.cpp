@@ -225,7 +225,7 @@ int main() {
     cout << "\n\nNODE DETAILS : \n-------------------\n";
     normal_tree.print_node_details(normal_tree.root);
 
-    cout << "\n\n\nBALANCED AVL TREE (WITHOUT ROTATIONS)\n=================================================================\n";
+    cout << "\n\n\nBALANCED AVL TREE (WITH ROTATIONS)\n=================================================================\n";
     AVLTree balaced_tree;
     balaced_tree.root = new Tree_Node(10);
     balaced_tree.insert_Node(12, balaced_tree.root);
