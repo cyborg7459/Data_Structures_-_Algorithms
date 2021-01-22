@@ -126,7 +126,7 @@ int Min_Heap::delete_root() {
             i = maxi;
         }
         else
-        break;
+            break;
     }
     return deleted;
 }
