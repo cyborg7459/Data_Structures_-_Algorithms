@@ -9,12 +9,14 @@ public:
 
 class Max_Heap:public Heap {
 public:
+    Max_Heap() {};
     Max_Heap(std::vector<int> arr);
     void insert(int x);
 };
 
 class Min_Heap:public Heap {
 public:
+    Min_Heap() {};
     Min_Heap(std::vector<int> arr);
     void insert(int x);
 };
@@ -28,9 +30,14 @@ void Heap::print() {
 
 Max_Heap::Max_Heap(std::vector<int> arr) {
     int n = arr.size();
-    v.push_back(arr[0]);
-    for(int i=1; i<n; i++)
-        v.insert(arr[i]);
+    for(int i=0; i<n; i++)
+        insert(arr[i]);
+}
+
+Min_Heap::Min_Heap(std::vector<int> arr) {
+    int n = arr.size();
+    for(int i=0; i<n; i++)
+        insert(arr[i]);
 }
 
 void Max_Heap::insert(int x) {
@@ -62,14 +69,8 @@ void Min_Heap::insert(int x) {
 }
 
 int main() {
-    Max_Heap maxHeap;
-    Min_Heap minHeap;
-    maxHeap.insert(10);
-    maxHeap.insert(4);
-    maxHeap.insert(40);
+    Max_Heap maxHeap({10,4,40});
+    Min_Heap minHeap({10,4,40});
     maxHeap.print();
-    minHeap.insert(10);
-    minHeap.insert(4);
-    minHeap.insert(40);
     minHeap.print();
 }
