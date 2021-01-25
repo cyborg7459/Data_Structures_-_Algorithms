@@ -7,6 +7,7 @@ Contains all the practice code and examples for different Data Structures and Al
 * Backtracking
 * Searching
 * Sorting
+* Hashing
 
 #### Data Structures done
 
