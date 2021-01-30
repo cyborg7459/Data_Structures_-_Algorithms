@@ -29,7 +29,7 @@ int find_parent(int i) {
 }
 
 void union_set(int a, int b) {
-    if(set_arr[a] < set_arr[b]) {
+    if(set_arr[a] <= set_arr[b]) {
         set_arr[a] += set_arr[b];
         set_arr[b] = a;
     }
@@ -51,7 +51,7 @@ int main() {
             t[0][i] = a;
             t[1][i] = b;
             a = find_parent(a), b = find_parent(b);
-            union_set(b,a);
+            union_set(a,b);
             i++;
         }
     }
