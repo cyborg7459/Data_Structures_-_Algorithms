@@ -1,53 +1,66 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-int N = 0;
-int arr[100][100] = {};
+int column[100] = {};
+int diag1[200] = {};
+int diag2[200] = {};
+int board[100] = {};
+int ans = 0;
+int N;
 
-bool is_attacked(int x,int y) {
-  for(int i=0; i<N; i++) {
-    if(arr[i][y]==1 || arr[x][i]==1) return true;
-  }
-  for(int i=0;i<N;i++) {
-    for(int j=0; j<N; j++) {
-      if(arr[i][j]==1 && ((i+j==x+y)||(i-j==x-y))) return true;
-    }
-  }
-  return false;
+bool isSafe(int row_num, int col_num) {
+    if(column[col_num] == 1) return false;
+    if(diag1[row_num + col_num] == 1) return false;
+    if(diag2[N-(row_num - col_num)] == 1) return false;
+    return true;
 }
 
-bool N_queen(int N) {
-  if(N==0) return true;
-  for(int i=0;i<N;i++) {
-    for(int j=0;j<N;j++) {
-      if(!is_attacked(i,j))
-        arr[i][j] = 1;
-      else {
-        arr[i][j]=0;
-        continue;
-      }
-      if(N_queen(N-1)) return true;
+void print_board() {
+    cout << "Possible arrangement :-\n";
+    for(int i=1; i<=N; i++) {
+        for(int j=1; j<=N; j++) {
+            if(j == board[i])
+                cout << "Q";
+            else
+                cout << "_";
+        }
+        cout << "\n";
     }
-  }
-  return false;
+    cout << "\n\n";
 }
 
-void printBoard() {
-  for(int i=0;i<N;i++) {
-    for(int j=0; j<N; j++) {
-      cout << arr[i][j] << " ";
+void N_Queens(int cur, int n) {
+    if(cur == n+1) {
+        ans++;
+        print_board();
     }
-    cout << "\n";
-  }
+    else {
+        for(int i=1; i<=n; i++) {
+            if(isSafe(cur, i)) {
+                board[cur] = i;
+                column[i] = 1;
+                diag1[cur+i] = 1;
+                diag2[N - (cur-i)] = 1;
+                N_Queens(cur+1, n);
+                column[i] = 0;
+                diag1[cur+i] = 0;
+                diag2[N - (cur-i)] = 0;
+            }
+            else continue;
+        }
+    }
 }
 
-int main() {
-  cin >> N;
-  if(N_queen(N)) {
-    cout << "YES\n";
-  }
-  else {
-    cout << "NO\n";
-  }
-  printBoard();
+void solve() {
+    cout << "Enter size of chessboard : ";
+    cin >> N;
+    N_Queens(1, N);
+    cout << "Total number of possible arrangements : " << ans << "\n";
+}
+
+signed main()
+{
+    int q = 1;
+    while(q--)
+        solve();
 }
