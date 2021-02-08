@@ -1,3 +1,10 @@
+// IMPLEMENTATION LOGIC
+// First constraint is that there can be only one queen in each row, and hence the N_Queens function takes in 2 parameters, where cur stores the current ongoing row and n shows the total number of rows. Thus,
+// if cur exceeds n, then it means that a complete arrangement has been found. Now, we keep 3 arrays, one for columns, and 2 for the 2 kinds of diagonals, where the value 0/1 indicates the presence of a queen
+// in that column or diagonal. Now for each row, we'll iterate through all columns. Then we'll check for the given cell whether it is free from attack or not. If it's not free, then we simply move to the next
+// columns. If free, then the first thing we do is to place the queen in that cell. By placing, we mean putting the values 1 in that cell's column and diagonals, and after that proceeding to the next row. One
+// the way back, we again free that cell and move the queen to the next cell, to check for more solutions.
+
 #include <bits/stdc++.h>
 using namespace std;
 
