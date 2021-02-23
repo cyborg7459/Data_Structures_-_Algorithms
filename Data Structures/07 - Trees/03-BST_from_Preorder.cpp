@@ -23,6 +23,7 @@ public:
     BST(std::vector<int> v, int n);
     void preorder(Tree_node *node);
     void inorder(Tree_node *node);
+    void postorder(Tree_node *node);
 };
 
 BST::BST(std::vector<int> v, int n) {
@@ -72,6 +73,17 @@ void BST::preorder(Tree_node *node) {
         preorder(node->right_child);
     }
 }
+
+void BST::postorder(Tree_node *node) {
+    if(node == nullptr)
+        return;
+    else {
+        postorder(node->left_child);
+        postorder(node->right_child);
+        cout << node->data << " ";
+    }
+}
+
 
 int main() {
     std::vector<int> v = {30,20,10,15,25,40,50,45};
