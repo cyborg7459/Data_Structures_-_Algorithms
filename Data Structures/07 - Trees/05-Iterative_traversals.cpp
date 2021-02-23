@@ -78,7 +78,7 @@ vector<int> Binary_Tree::Iterative_inorder(node *root) {
                 st2.push(cur);
                 st1.push(cur->left_child);
             }
-            else  if(cur->right_child) {
+            else if(cur->right_child) {
                 v.push_back(cur->data);
                 st1.push(cur->right_child);
             }
