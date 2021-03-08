@@ -4,10 +4,10 @@ using namespace std;
 #define INF 1e9
 
 int num = 0;
-int required_sum = 32;
-vector<int> coins = {1,3,4};
-int ready[32] = {};
-int value[32];
+int required_sum = 500;
+vector<int> coins = {3,41,7,11};
+int ready[500] = {};
+int value[500];
 
 int solve(int x) {
     if(x < 0) return INF;
