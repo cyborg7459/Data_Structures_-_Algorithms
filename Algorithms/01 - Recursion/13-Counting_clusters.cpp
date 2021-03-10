@@ -2,23 +2,25 @@
 using namespace std;
 
 void func(int x, int y, int arr[5][5]) {
+    if(x>4 || y>4 || x<0 || y<0) return;
+    if(arr[x][y] == 0) return;
     arr[x][y] = 0;
-    if(x+1 < 5 && arr[x+1][y] == 1)
-        func(x+1, y, arr);
-    if(x-1 >= 0 && arr[x-1][y] == 1)
-        func(x-1, y, arr);
-    if(y-1 >= 0 && arr[x][y-1] == 1)
-        func(x, y-1, arr);
-    if(y+1 < 5 && arr[x][y+1] == 1)
-        func(x, y+1, arr);
+    func(x+1, y, arr);
+    func(x-1, y, arr);
+    func(x, y-1, arr);
+    func(x, y+1, arr);
+    func(x+1, y+1, arr);
+    func(x-1, y+1, arr);
+    func(x+1, y-1, arr);
+    func(x-1, y-1, arr);
 }
 
 int main() {
-    int arr[5][5] = {{1,1,0,0,1}
+    int arr[5][5] = {{1,0,0,1,0}
+                    ,{0,1,0,1,0}
                     ,{0,0,0,0,1}
-                    ,{0,0,1,0,0}
-                    ,{1,0,0,0,1}
-                    ,{0,0,1,1,0}};
+                    ,{0,1,0,0,0}
+                    ,{1,0,0,0,0}};
     int counter = 0;
     for(int i=0; i<5; i++) {
         for(int j=0; j<5; j++) {
