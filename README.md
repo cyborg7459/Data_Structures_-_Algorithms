@@ -8,6 +8,7 @@ Contains all the practice code and examples for different Data Structures and Al
 * Searching
 * Sorting
 * Hashing
+* Dynamic Programming
 
 #### Data Structures done
 
@@ -19,3 +20,4 @@ Contains all the practice code and examples for different Data Structures and Al
 * Queues
 * Trees
 * Heap
+* Graph
