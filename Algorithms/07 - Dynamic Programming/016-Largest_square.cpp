@@ -1,3 +1,6 @@
+// Method of counting squares in a matrix is that for each element which is a 1, check the element to the left, top and top-left. The size of the square formed
+// by taking the current element as bottom right vertex would then be equal to 1 more than the minimum sized square formed by the other 3 elements.
+
 #include <bits/stdc++.h>
 using namespace std;
 
