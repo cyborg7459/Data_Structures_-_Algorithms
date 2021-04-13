@@ -1,3 +1,7 @@
+// PS : https://leetcode.com/problems/dungeon-game/
+// Explanation : In this problem, for each position in array, we have to calculate the minimum health needed to reach the bottom right from that point. Also, this minimum health should
+// always be more than 0, hence there is the added step that even if the health required is less than zero, increase it to 1
+
 #include <bits/stdc++.h>
 using namespace std;
 
