@@ -59,22 +59,8 @@ void merge(Node *first, Node *second) {
             last->next = NULL;
         }
     }
-    if(first==NULL) {
-        while(second!=NULL) {
-            last->next = second;
-            last = second;
-            second = second->next;
-            last->next = NULL;
-        }
-    }
-    else {
-        while(first!=NULL) {
-            last->next = first;
-            last = first;
-            first = first->next;
-            last->next = NULL;
-        }
-    }
+    if(first==NULL) last = second;
+    else last = first;
     display(mergedfirst);
 }
 
