@@ -32,7 +32,7 @@ void display(Node *p) {
     }
 }
 
-// This method is more efficient than the previous one because here a new linked list is not created. Instead the same nodes' links are changed to create the merged linked list, hence increasing space efficiency
+// This method is more efficient than the previous one because here a new linked list is not created. Instead the same nodes' links are changed to create the merged linked list, hence increasing the space efficiency
 void merge(Node *first, Node *second) {
     Node *last = new Node;
     if(first->data < second->data) {
