@@ -3,8 +3,6 @@ using namespace std;
 
 #define int long long
 #define INF 1000000007
-int choices[3000][3000] = {};
-int dp[3000][3000] = {};
 
 int longestPath(int start, map<int, vector<int>> &mp, vector<int> &dp) {
 	if(dp[start] != -1) return dp[start];
