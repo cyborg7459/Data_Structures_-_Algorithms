@@ -11,8 +11,7 @@ struct Item{
     int weight;
 };
 
-class Solution
-{
+class Solution {
 public:
     double fractionalKnapsack(int W, Item arr[], int n) {
         sort(arr, arr+n, [](Item a, Item b) {
