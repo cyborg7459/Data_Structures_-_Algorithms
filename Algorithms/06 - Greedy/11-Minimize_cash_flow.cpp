@@ -1,3 +1,8 @@
+// Problem : https://www.geeksforgeeks.org/minimize-cash-flow-among-given-set-friends-borrowed-money/
+// Explanation : In the greedy approach, our goal at each step is to settle the transaction between the person having the maximum due credit and the maximum due debit.
+// This is because at the end, even though indirectly, the amount would go from one person to the other. Hence to minimize the cash flow, we make this transaction directly between
+// the 2 of them
+
 #include <bits/stdc++.h>
 using namespace std;
 
