@@ -27,9 +27,9 @@ void print_board() {
     for(int i=1; i<=N; i++) {
         for(int j=1; j<=N; j++) {
             if(j == board[i])
-                cout << "Q";
+                cout << "Q ";
             else
-                cout << "_";
+                cout << "* ";
         }
         cout << "\n";
     }
