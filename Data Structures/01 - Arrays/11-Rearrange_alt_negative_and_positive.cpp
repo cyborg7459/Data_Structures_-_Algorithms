@@ -30,7 +30,7 @@ void rev(vector<int> &v, int a, int b) {
 }
 
 int main() {
-	vector<int> v = {1,2,3,4,5,6,-1,-2,-3};
+	vector<int> v = {1,2,3,4,5,-4,-1,-2,-3};
 	int n = v.size();
 	int p_i = 0, cur_i = 0;
 	while(cur_i < n) {
@@ -53,7 +53,7 @@ int main() {
 				else {
 					rev(v, cur_i, next_neg);
 					rev(v, cur_i+1, next_neg);
-					cur_i+=2;                      // because we already put the correct element at cur_i + 1 index and don't want to disturb it now
+					cur_i++;              // because we already put the correct element at cur_i + 1 index and don't want to disturb it now
                     p_i+=2;
 				}
 			}
