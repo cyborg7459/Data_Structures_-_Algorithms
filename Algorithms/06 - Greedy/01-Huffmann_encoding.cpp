@@ -13,12 +13,14 @@ public:
 	}
 };
 
-auto comparator = [](const CharacterGroup& a, const CharacterGroup& b) {
-	return a.freq > b.freq;
+struct compare {
+	bool operator()(CharacterGroup a, CharacterGroup b) {
+		return a.freq > b.freq;
+	}
 };
 
 int main() {
-	priority_queue<CharacterGroup, vector<CharacterGroup>, decltype(comparator) > pq(comparator);
+	priority_queue<CharacterGroup, vector<CharacterGroup>, compare > pq;
 	string s = "abcdefghijkl";
 	vector<int> frequency = {12, 4, 3, 85, 14, 2, 1, 65, 2, 45, 1, 23};
 	map<char, string> mp;
