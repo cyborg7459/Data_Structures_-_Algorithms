@@ -30,7 +30,6 @@ bool sudoku(int i, int j, int grid[N][N]) {
         }
         return sudoku(x, y, grid);
     }
-    bool b = false;
     for(int num = 1; num < 10; num++) {
         if(isValid(i, j, num)) {
             grid[i][j] = num;
@@ -42,15 +41,14 @@ bool sudoku(int i, int j, int grid[N][N]) {
                 x++;
                 y = 0;
             }
-            b = b || sudoku(x, y, grid);
-			if(b) break;
+            if(sudoku(x, y, grid)) return true;
             row[i].pop_back();
             col[j].pop_back();
             box[i/3][j/3].pop_back();
 			grid[i][j] = 0;
         }
     }
-    return b;
+    return false;
 }
 
 bool SolveSudoku(int grid[N][N]) {
