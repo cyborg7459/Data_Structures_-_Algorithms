@@ -54,7 +54,7 @@ vector<int> singleSourceShortestPath(vector<int> topSort, int n) {
 int main() {
     int n, e;
     cin >> n >> e;
-    
+
     for(int i=0; i<e; i++) {
         int a, b, w;
         cin >> a >> b >> w;
