@@ -54,25 +54,14 @@ vector<int> singleSourceShortestPath(vector<int> topSort, int n) {
 int main() {
     int n, e;
     cin >> n >> e;
-    for(int i=0; i<=100; i++) {
-        adj[i].clear();
-    }
+    
     for(int i=0; i<e; i++) {
         int a, b, w;
         cin >> a >> b >> w;
         adj[a].push_back({b, w});
     }
-    // for(int i=1; i<=n; i++) {
-    //     cout << i << " : ";
-    //     for(pair<int, int> p : adj[i])
-    //         cout << p.first << " ";
-    //     cout << endl;
-    // }
+
     vector<int> topSort = topologicalSort(n, 1);
-    for(int t : topSort) {
-        cout << t << " ";
-    }
-    cout << endl;
     vector<int> ans = singleSourceShortestPath(topSort, n);
 
     cout << "Minimum distance from source :-\n";
