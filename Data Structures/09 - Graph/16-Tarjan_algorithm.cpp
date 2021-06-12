@@ -9,20 +9,23 @@
 // minimize the low_link value to the neighbour's value if neighbour is a valid point and is not in some other SCC
 // 4) If the low_link value of an element is equal to the discovery time, it means that the given node is the lowest node of it's strongly connected component. Hence, we start
 // popping off elements from that node until we reach that node. By doing this, we remove all elements belonging in that strongly connected component from the stack and hence
-// ensure that they won't come in some other.
+// ensure that they won't come in some other. While removing, we also set the low value of all the elements removed to the discovery time of the current node (it is possible that
+// this step did not happen during recursion)
 // 5) Updating the sccCount counter can help us know the number of strongly connected components. If at the end, it is equal to the number of nodes, then it means that there are
 // no strongly connected components
+// 6) In case of finding the schedule for tasks, we have to take into consideration single element SCCs as well, i.e. if a node is connected to itself, then scheduling is not
+// possible
 
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> adj[8] = {{1, 4}, {5}, {1, 3, 6}, {6}, {0, 5}, {2, 6}, {7}, {3}};
+vector<int> adj[100005];
 int cur_disc = 0;
 int sccCount = 0;
 
-int disc[105] = {};
-int low[105] = {};
-bool isOnStack[105] = {};
+int disc[100005] = {};
+int low[100005] = {};
+bool isOnStack[100005] = {};
 
 stack<int> st;
 
@@ -44,6 +47,7 @@ void dfs(int node) {
             int t = st.top();
             st.pop();
             isOnStack[t] = false;
+            low[t] = disc[node];
             if(t == node) break;
         }
     }
@@ -51,8 +55,6 @@ void dfs(int node) {
 
 vector<int> TarjanSCC(int n) {
     vector<int> low_links(n);
-    for(int i=0; i<n; i++)
-        disc[i] = -1;
     for(int i=0; i<n; i++) {
         if(disc[i] == -1) dfs(i);
     }
@@ -62,7 +64,18 @@ vector<int> TarjanSCC(int n) {
 }
 
 int main() {
-    int n = 8;
+    int n, e;
+    cin >> n >> e;
+    for(int i=0; i<n; i++) {
+        disc[i] = -1;
+        low[i] = 1000000007;
+        isOnStack[i] = false;
+    }
+    for(int i=0; i<e; i++) {
+        int a, b;
+        cin >> a >> b;
+        adj[a].push_back(b);
+    }
     vector<int> low_links = TarjanSCC(n);
     if(sccCount == n)
         cout << "No cycles in the graph";
