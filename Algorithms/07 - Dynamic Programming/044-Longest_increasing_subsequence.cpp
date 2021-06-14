@@ -8,7 +8,7 @@
 // such a number exists, then we can form a new subsequence with size increased by 1. If not, then a single element subsequence is formed. Now, if some subsequence already exists with the given length,
 // we'll just compare the last elements and pick whichever one's smaller. This, again, takes O(log(n)) time.
 
-include <bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -21,28 +21,20 @@ int main() {
 	cand.push_back(v[0]);
 	len.push_back(1);
 	for(int i=1; i<n; i++) {
-		int num = v[i];
-		auto it = lower_bound(cand.begin(), cand.end(), num);
-		int new_cand, new_len;
-		if(it == cand.begin()) {
-			new_cand = num;
-			new_len = 1;
-		}
-		else {
-			it--;
-			int idx = it - cand.begin();
-			new_cand = num;
-			new_len = len[idx] + 1;
-		}
-		auto it1 = find(len.begin(), len.end(), new_len);
-		if(it1 == len.end()) {
-			len.push_back(new_len);
-			cand.push_back(new_cand);
-		}
-		else {
-			int idx = it1 - len.begin();
-			cand[idx] = min(cand[idx], new_cand);
-		}
+	    int num = v[i];
+	    vector<int>::iterator it = lower_bound(cand.begin(), cand.end(), num);
+	    int new_cand, new_len;
+	    if(it == cand.begin())
+	        cand[0] = min(cand[0], num);
+	    else {
+	        int idx = it - cand.begin();
+	        if(idx == cand.size()) {
+	            cand.push_back(num);
+	            len.push_back(len[idx-1]+1);
+	        }
+	        else
+	            cand[idx] = min(cand[idx], num);
+	    }
 	}
-	cout << len[len.size() - 1] << endl;
+	cout << len[len.size() - 1];
 }
