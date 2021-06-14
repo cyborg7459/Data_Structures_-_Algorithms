@@ -11,30 +11,31 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int longestSubsequence(int n, vector<int> v) {
+	vector<int> cand;
+	vector<int> len;
+	cand.push_back(v[0]);
+	len.push_back(1);
+
+	for(int i=1; i<n; i++) {
+	    int num = v[i];
+	    vector<int>::iterator it = lower_bound(cand.begin(), cand.end(), num);
+        int idx = it - cand.begin();
+        if(idx == cand.size()) {
+            cand.push_back(num);
+            len.push_back(len[idx-1]+1);
+        }
+        else
+            cand[idx] = min(cand[idx], num);
+	}
+
+	return len[len.size() -1];
+}
+
 int main() {
 	int n;
 	cin >> n;
 	vector<int> v(n);
 	for(int i=0; i<n; i++) cin >> v[i];
-	vector<int> cand;
-	vector<int> len;
-	cand.push_back(v[0]);
-	len.push_back(1);
-	for(int i=1; i<n; i++) {
-	    int num = v[i];
-	    vector<int>::iterator it = lower_bound(cand.begin(), cand.end(), num);
-	    int new_cand, new_len;
-	    if(it == cand.begin())
-	        cand[0] = min(cand[0], num);
-	    else {
-	        int idx = it - cand.begin();
-	        if(idx == cand.size()) {
-	            cand.push_back(num);
-	            len.push_back(len[idx-1]+1);
-	        }
-	        else
-	            cand[idx] = min(cand[idx], num);
-	    }
-	}
-	cout << len[len.size() - 1];
+	cout << longestSubsequence(n, v);
 }
