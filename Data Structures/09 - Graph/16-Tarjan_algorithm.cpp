@@ -85,7 +85,6 @@ int main() {
         cout << "No cycles in the graph";
     else {
         cout << sccCount << " cycles in the graph.\nThe strongly connected components are :-\n";
-        map<int, vector<int>> mp;
         for(vector<int> v : scc) {
             for(int t : v)
                 cout << t << " ";
