@@ -5,6 +5,7 @@
 // We need 2 DFS and a reversal step for Kosaraju. First, we visit all nodes of the graph using DFS, pushing nodes in the stack during return time. Now we find the transpose graph by reversing the edges
 // and start DFS again for nodes from the stack one by one. Starting from any node, all the nodes that we can reach now belong to the same SCC. If the DFS stops and we have to start another DFS for the
 // next element in stack, it means that we are now in a different SCC
+// Since both the dfs as well as the reversal step all are separate, hence the time complexity of Kosraraju algorithm is O(V+E)
 
 #include <bits/stdc++.h>
 using namespace std;
