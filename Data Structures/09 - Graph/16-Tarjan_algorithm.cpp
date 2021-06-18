@@ -28,6 +28,7 @@ int low[100005] = {};
 bool isOnStack[100005] = {};
 
 stack<int> st;
+vector<vector<int>> scc;
 
 void dfs(int node) {
     st.push(node);
@@ -43,13 +44,16 @@ void dfs(int node) {
 
     if(disc[node] == low[node]) {
         sccCount++;
+        vector<int> temp;
         while(true) {
             int t = st.top();
+            temp.push_back(t);
             st.pop();
             isOnStack[t] = false;
             low[t] = disc[node];
             if(t == node) break;
         }
+        scc.push_back(temp);
     }
 }
 
@@ -82,15 +86,8 @@ int main() {
     else {
         cout << sccCount << " cycles in the graph.\nThe strongly connected components are :-\n";
         map<int, vector<int>> mp;
-        for(int i=0; i<n; i++) {
-            int ll = low_links[i];
-            if(mp.find(ll) == mp.end())
-                mp.insert({ll, {i}});
-            else
-                mp[ll].push_back(i);
-        }
-        for(auto it = mp.begin(); it != mp.end(); it++) {
-            for(int t : it->second)
+        for(vector<int> v : scc) {
+            for(int t : v)
                 cout << t << " ";
             cout << endl;
         }
