@@ -1,4 +1,4 @@
-// Kosraraju Algorithm is used to detect stringly connected components in a graph. The principle behind this algorith is that if there is an edge between 2 Strongly connected components, then we can
+// Kosraraju Algorithm is used to detect strongly connected components in a graph. The principle behind this algorithm is that if there is an edge between 2 Strongly connected components, then we can
 // traverse all nodes of the 2nd SCC starting from any node in the first SCC. However, if all edges in the graph were to be reversed, then now if we start from any node in the first SCC, we'll still
 // be able to reach all nodes of that SCC, but won't be able to reach any node of the 2nd SCC. Hence, the property is that reversal of all edges does not affect traversal within an SCC, but does affect
 // traversal between non-SCC.
