@@ -15,6 +15,7 @@ public:
 
 class Binary_Tree {
 public:
+    bool vis[1000000] = {};
     node* root;
     Binary_Tree(vector<int> v);
     vector<int> Iterative_postorder(node *root);
@@ -43,6 +44,32 @@ Binary_Tree::Binary_Tree(vector<int> v) {
     }
 }
 
+vector<int> Binary_Tree::Iterative_postorder(node *root) {
+    memset(vis, false, sizeof vis);
+    vector<int> ans = {};
+    if(!root) return ans;
+    stack<pair<node*, int>> st;
+    st.push({root, 0});
+    int cnt = 1;
+    while(!st.empty()) {
+        pair<node*, int> p = st.top();
+        node* cur = p.first;
+        int idx = p.second;
+        if(vis[idx]) {
+            ans.push_back(cur->data);
+            st.pop();
+        }
+        else {
+            vis[idx] = true;
+            if(cur->right_child) st.push({cur->right_child, cnt});
+            cnt++;
+            if(cur->left_child) st.push({cur->left_child, cnt});
+            cnt++;
+        }
+    }
+    return ans;
+}
+
 vector<int> Binary_Tree::Iterative_preorder(node *root) {
     stack<node*> st;
     vector<int> v;
@@ -57,7 +84,6 @@ vector<int> Binary_Tree::Iterative_preorder(node *root) {
     return v;
 }
 
-bool vis[1000000] = {};
 vector<int> Binary_Tree::Iterative_inorder(node *root) {
     memset(vis, false, sizeof vis);
     vector<int> ans = {};
@@ -86,7 +112,7 @@ vector<int> Binary_Tree::Iterative_inorder(node *root) {
 int main() {
     vector<int> v = {19, 10, 8, 11, 13, -1, -1};
     Binary_Tree b(v);
-    vector<int> v1 = b.Iterative_inorder(b.root);
+    vector<int> v1 = b.Iterative_postorder(b.root);
     for(auto t : v1)
         cout << t << " ";
 }
