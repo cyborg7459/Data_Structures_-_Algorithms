@@ -57,34 +57,30 @@ vector<int> Binary_Tree::Iterative_preorder(node *root) {
     return v;
 }
 
+bool vis[1000000] = {};
 vector<int> Binary_Tree::Iterative_inorder(node *root) {
-    stack<node*> st1, st2;
-    vector<int> v;
-    st1.push(root);
-    while(!st1.empty()) {
-        node *cur = st1.top();
-        st1.pop();
-        if(cur->left_child == nullptr && cur->right_child == nullptr)
-            v.push_back(cur->data);
-        else if(!st2.empty() && st2.top()==cur) {
-            v.push_back(cur->data);
-            st2.pop();
-            if(cur->right_child)
-                st1.push(cur->right_child);
-        }
+    memset(vis, false, sizeof vis);
+    vector<int> ans = {};
+    if(!root) return ans;
+    stack<pair<node*, int>> st;
+    st.push({root, 0});
+    int cnt = 1;
+    while(!st.empty()) {
+        pair<node*, int> p = st.top();
+        st.pop();
+        node* cur = p.first;
+        int idx = p.second;
+        if(vis[idx]) ans.push_back(cur->data);
         else {
-            if(cur->left_child) {
-                st1.push(cur);
-                st2.push(cur);
-                st1.push(cur->left_child);
-            }
-            else if(cur->right_child) {
-                v.push_back(cur->data);
-                st1.push(cur->right_child);
-            }
+            vis[idx] = true;
+            if(cur->right_child) st.push({cur->right_child, cnt});
+            cnt++;
+            st.push(p);
+            if(cur->left_child) st.push({cur->left_child, cnt});
+            cnt++;
         }
     }
-    return v;
+    return ans;
 }
 
 int main() {
