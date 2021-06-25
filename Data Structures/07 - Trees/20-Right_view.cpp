@@ -44,6 +44,31 @@ Node* createFromLevelOrder(vector<string> v) {
 	return root;
 }
 
+vector<int> leftView(Node *root) {
+    if(!root) return {};
+    vector<int> ans;
+    queue<Node*> q;
+    q.push(root);
+    q.push(nullptr);
+    while(true) {
+        Node* node = q.front();
+        q.pop();
+        if(!node) break;
+        if(node->left) q.push(node->left);
+        if(node->right) q.push(node->right);
+        ans.push_back(node->data);
+        while(true) {
+            Node* node = q.front();
+            q.pop();
+            if(!node) break;
+            if(node->left) q.push(node->left);
+            if(node->right) q.push(node->right);
+        }
+        q.push(nullptr);
+    }
+    return ans;
+}
+
 vector<int> rightView(Node *root) {
     if(!root) return {};
     vector<int> ans;
@@ -69,9 +94,38 @@ vector<int> rightView(Node *root) {
     return ans;
 }
 
+int arr[30000] = {};
+vector <int> bottomView(Node *root) {
+    if(!root) return {};
+    vector<int> ans;
+    queue<pair<Node*, int>> q;
+    int idx = 15000, l = 15000, r = 15000;
+    arr[idx] = root->data;
+    q.push({root, idx});
+    while(!q.empty()) {
+        pair<Node*,int> p = q.front();
+        q.pop();
+        l = min(l, p.second);
+        r = max(r, p.second);
+        arr[p.second] = p.first->data;
+        if(p.first->left) q.push({p.first->left, p.second-1});
+        if(p.first->right) q.push({p.first->right, p.second+1});
+    }
+    for(int i=l; i<=r; i++) ans.push_back(arr[i]);
+    return ans;
+}
+
 int main() {
     vector<string> v = {"10", "20", "30", "40", "50"};
     Node* root = createFromLevelOrder(v);
-    vector<int> v1 = rightView(root);
+    vector<int> v1 = leftView(root);
+    cout << "Left view : ";
     for(int t : v1) cout << t << " ";
+    cout << endl << "Right view : ";
+    v1 = rightView(root);
+    for(int t : v1) cout << t << " ";
+    cout << endl << "Bottom view : ";
+    v1 = bottomView(root);
+    for(int t : v1) cout << t << " ";
+    cout << endl;
 }
