@@ -97,10 +97,10 @@ vector<int> rightView(Node *root) {
 int arr[30000] = {};
 vector <int> bottomView(Node *root) {
     if(!root) return {};
+    memset(arr, -1, sizeof arr);
     vector<int> ans;
     queue<pair<Node*, int>> q;
     int idx = 15000, l = 15000, r = 15000;
-    arr[idx] = root->data;
     q.push({root, idx});
     while(!q.empty()) {
         pair<Node*,int> p = q.front();
@@ -108,6 +108,26 @@ vector <int> bottomView(Node *root) {
         l = min(l, p.second);
         r = max(r, p.second);
         arr[p.second] = p.first->data;
+        if(p.first->left) q.push({p.first->left, p.second-1});
+        if(p.first->right) q.push({p.first->right, p.second+1});
+    }
+    for(int i=l; i<=r; i++) ans.push_back(arr[i]);
+    return ans;
+}
+
+vector<int> topView(Node *root) {
+    if(!root) return {};
+    memset(arr, -1, sizeof arr);
+    vector<int> ans;
+    queue<pair<Node*, int>> q;
+    int idx = 15000, l = 15000, r = 15000;
+    q.push({root, idx});
+    while(!q.empty()) {
+        pair<Node*, int> p = q.front();
+        q.pop();
+        l = min(l, p.second);
+        r = max(r, p.second);
+        if(arr[p.second] == -1) arr[p.second] = p.first->data;
         if(p.first->left) q.push({p.first->left, p.second-1});
         if(p.first->right) q.push({p.first->right, p.second+1});
     }
@@ -127,5 +147,7 @@ int main() {
     cout << endl << "Bottom view : ";
     v1 = bottomView(root);
     for(int t : v1) cout << t << " ";
-    cout << endl;
+    cout << endl << "Top view : ";
+    v1 = topView(root);
+    for(int t : v1) cout << t << " ";
 }
