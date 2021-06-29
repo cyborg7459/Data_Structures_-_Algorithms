@@ -35,14 +35,8 @@ int main() {
 		int a, b;
 		scanf("%d%d\n", &a, &b);
 		adj[a].push_back(b);
-		// adj[b].push_back(a);
 	}
     dfs(1);
-    // for(int i=1; i<=n; i++) {
-    //     cout << "=================\nNode " << i << endl;
-    //     cout << "Enter time : " << enter[i] << endl;
-    //     cout << "Exit time : " << exitTime[i] << endl;
-    // }
     int q;
     scanf("%d\n",&q );
     while(q--) {
