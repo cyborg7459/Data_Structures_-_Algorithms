@@ -5,6 +5,8 @@
 // is to keep a min heap of size 'k'. If the current element is greater than the smallest element of the priority_queue, it means that it belongs in the k largest elements and the latter does not.
 // Hence we'll simply pop the top and push the new element
 // NOTE : Solve the Kth smallest and Kth largest problems like this as well
+// V.V.V.IMPORTANT : THIS METHOD OF USING MIN HEAP TO STORE K LARGEST AND MAX HEAP TO STORE K SMALLEST IS ONE OF THE MOST IMPORTANT CONCEPTS IN HEAP AND IS USED IN SEVERAL QUESTIONS LIKE KTH LARGEST
+// IN A STREAM, MEDIAN OF A STREAM, ETC
 
 #include <bits/stdc++.h>
 using namespace std;
