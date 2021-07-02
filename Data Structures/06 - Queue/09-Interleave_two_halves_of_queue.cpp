@@ -31,7 +31,7 @@ int main() {
 		s2.push(q.front());
 		q.pop();
 	}
-	b = (n%2==1);
+	b = true;
 	while(true) {
 		if(b) {
 			if(s1.empty()) break;
