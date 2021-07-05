@@ -1,3 +1,6 @@
+// Explanation : For checking a BST, all we have to do is to recursively check that the maximum value node in the left subtree is smaller than the current node, and the minimum value node in the right subtree is
+// greater than the current node. We can do this using the updation while calculation method (done in Binary Trees)
+
 #include <bits/stdc++.h>
 using namespace std;
 #define MAX_HEIGHT 100000
