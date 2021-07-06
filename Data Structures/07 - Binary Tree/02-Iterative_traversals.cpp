@@ -15,7 +15,6 @@ public:
 
 class Binary_Tree {
 public:
-    bool vis[1000000] = {};
     node* root;
     Binary_Tree(vector<int> v);
     vector<int> Iterative_postorder(node *root);
@@ -45,27 +44,19 @@ Binary_Tree::Binary_Tree(vector<int> v) {
 }
 
 vector<int> Binary_Tree::Iterative_postorder(node *root) {
-    memset(vis, false, sizeof vis);
-    vector<int> ans = {};
-    if(!root) return ans;
-    stack<pair<node*, int>> st;
-    st.push({root, 0});
-    int cnt = 1;
-    while(!st.empty()) {
-        pair<node*, int> p = st.top();
-        node* cur = p.first;
-        int idx = p.second;
-        if(vis[idx]) {
-            ans.push_back(cur->data);
-            st.pop();
-        }
-        else {
-            vis[idx] = true;
-            if(cur->right_child) st.push({cur->right_child, cnt});
-            cnt++;
-            if(cur->left_child) st.push({cur->left_child, cnt});
-            cnt++;
-        }
+    stack<node*> st1, st2;
+    st1.push(root);
+    while(!st1.empty()) {
+        node* node = st1.top();
+        st1.pop();
+        st2.push(node);
+        if(node->left_child) st1.push(node->left_child);
+        if(node->right_child) st1.push(node->right_child);
+    }
+    vector<int> ans;
+    while(!st2.empty()) {
+        ans.push_back(st2.top()->data);
+        st2.pop();
     }
     return ans;
 }
