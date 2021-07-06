@@ -85,25 +85,20 @@ vector<int> Binary_Tree::Iterative_preorder(node *root) {
 }
 
 vector<int> Binary_Tree::Iterative_inorder(node *root) {
-    memset(vis, false, sizeof vis);
-    vector<int> ans = {};
-    if(!root) return ans;
-    stack<pair<node*, int>> st;
-    st.push({root, 0});
-    int cnt = 1;
-    while(!st.empty()) {
-        pair<node*, int> p = st.top();
-        st.pop();
-        node* cur = p.first;
-        int idx = p.second;
-        if(vis[idx]) ans.push_back(cur->data);
+    stack<node*> st;
+    vector<int> ans;
+    node* cur = root;
+    while(true) {
+        if(cur) {
+            st.push(cur);
+            cur = cur->left_child;
+        }
         else {
-            vis[idx] = true;
-            if(cur->right_child) st.push({cur->right_child, cnt});
-            cnt++;
-            st.push(p);
-            if(cur->left_child) st.push({cur->left_child, cnt});
-            cnt++;
+            if(st.empty()) break;
+            cur = st.top();
+            st.pop();
+            ans.push_back(cur->data);
+            cur = cur->right_child;
         }
     }
     return ans;
@@ -112,7 +107,13 @@ vector<int> Binary_Tree::Iterative_inorder(node *root) {
 int main() {
     vector<int> v = {19, 10, 8, 11, 13, -1, -1};
     Binary_Tree b(v);
-    vector<int> v1 = b.Iterative_postorder(b.root);
-    for(auto t : v1)
-        cout << t << " ";
+    cout << "Preorder : ";
+    vector<int> v1 = b.Iterative_preorder(b.root);
+    for(auto t : v1) cout << t << " ";
+    cout << "\nInorder : ";
+    v1 = b.Iterative_inorder(b.root);
+    for(auto t : v1) cout << t << " ";
+    cout << "\nPostorder : ";
+    v1 = b.Iterative_postorder(b.root);
+    for(int t : v1) cout << t << " ";
 }
