@@ -1,3 +1,11 @@
+// Explanation :-
+// ITERATIVE PREORDER : This one is the simplest, we simply need to keep popping off elements from the stack, add it to the vector, and then push the right and left children in the stack (in this order
+// only, so that left child is accessed before the right child)
+// ITERATIVE POSTORDER : In this, we need 2 stacks. Here the steps are similar to iterative preorder, it's just that we move in the reverse order, i.e. we first push the left child and then the right
+// child in the stack. Also, the popped off elements are added in a second stack because the postorder is actually the reverse order of popping and hence the other stack helps in reversing in O(n)
+// ITERATIVE INORDER : In this, we keep track of the nodes using a current node, the procedure is to keep going left child for as long as possible. Once we can't go further, then we pop off the topmost
+// element, add it to the inorder and then add it's right child to the stack 
+
 #include <bits/stdc++.h>
 using namespace std;
 
