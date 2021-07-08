@@ -19,6 +19,7 @@ Contains all the practice code and examples for different Data Structures and Al
 * Linked List
 * Stacks
 * Queues
-* Trees
+* Binary Tree
 * Heap
 * Graph
+* Binary Search Tree
