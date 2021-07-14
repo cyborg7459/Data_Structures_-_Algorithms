@@ -23,5 +23,5 @@ bool isInterleave(string A, string B, string C) {
 }
 
 int main() {
-    cout << boolalpha << isInterleave("xa", "xb", "xxba");
+    cout << boolalpha << isInterleave("bx", "by", "bbxy");
 }
