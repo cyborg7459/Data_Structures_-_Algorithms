@@ -7,48 +7,29 @@ void print(int arr[], int l, int r) {
     cout << "\n";
 }
 
-void merge(int arr[],int l,int r) {
+void merge(int arr[], int l, int m, int r) {
     cout << "Calling merge function for " << l << " to " << r << "\nThe array section after merging is : ";
-    int n1 = (r-l)/2+1;
-    int n2 = (r-l+1)-n1;
+    int n1 = (m-l+1), n2 = (r-m);
     int arr1[n1], arr2[n2];
-    for(int i=l, j=0; i<l+n1; i++, j++)
-        arr1[j] = arr[i];
-    for(int i=l+n1, j=0; i<=r; i++, j++)
-        arr2[j] = arr[i];
-    int i=0, j=0, idx=l;
-    while(i<n1 && j<n2) {
-        if(arr1[i]<arr2[j]) {
-            arr[idx] = arr1[i];
-            i++;
-            idx++;
-        }
-        else {
-            arr[idx] = arr2[j];
-            j++;
-            idx++;
-        }
+    for(int i=l; i<=m; i++) arr1[i-l] = arr[i];
+    for(int i=m+1; i<=r; i++) arr2[i-(m+1)] = arr[i];
+    int i1 = 0, i2 = 0, idx = l;
+    while(i1 < n1 && i2 < n2) {
+        if(arr1[i1] < arr2[i2]) arr[idx++] = arr1[i1++];
+        else arr[idx++] = arr2[i2++];
     }
-    while(i<n1) {
-        arr[idx] = arr1[i];
-        i++;
-        idx++;
-    }
-    while(j<n2) {
-        arr[idx] = arr2[j];
-        j++;
-        idx++;
-    }
+    while(i1 < n1) arr[idx++] = arr1[i1++];
+    while(i2 < n2) arr[idx++] = arr2[i2++];
     print(arr, l, r);
 }
 
 void mergeSort(int arr[], int l, int r) {
     cout << "Calling merge sort for : " << l << " to " << r << "\n";
-    if(l>=r)
-        return;
-    mergeSort(arr, l, (r+l)/2);
-    mergeSort(arr, (r+l)/2+1, r);
-    merge(arr, l, r);
+    if(l>=r) return;
+    int mid = l + (r-l)/2;
+    mergeSort(arr, l, mid);
+    mergeSort(arr, mid+1, r);
+    merge(arr, l, mid, r);
 }
 
 int main() {
