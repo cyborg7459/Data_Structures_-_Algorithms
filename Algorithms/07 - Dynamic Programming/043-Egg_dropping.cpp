@@ -13,13 +13,16 @@
 // 2) If the egg did not break, then we have to find the answer for i eggs and j-x floors
 // We'll choose the maximum of these 2 as we have to see the worst case. Thus we'll calculate max(dp[i-1][x-1], dp[i][j-x]) for each x and take the minimum of all. Then dp[i][j] = 1 + min
 
+// One very important optimization in this problem is that instead of looping through all, we can apply binary search while looking for floors. This has got to do with the increasing nature of dp[i-1][x-1], and
+// decreasing nature of dp[i][j-x] with the value of x (The standard solution has been commented in case you wish to see that). This new solution is of n*k*logk instead of nK^2
+
 #include <bits/stdc++.h>
 using namespace std;
 
 #define INF 1000000007
 
 int main() {
-	int n = 3, k = 14;
+	int n = 10, k = 100;
 	int dp[n+1][k+1] = {};
 	for(int i=1; i<=k; i++) {
 		dp[1][i] = i;
@@ -35,11 +38,20 @@ int main() {
 		for(int j=4; j<=k; j++) {
 			dp[i][j] =INF;
 			int add = INF;
-			for(int x=1; x<=j; x++) {
-				int a = dp[i-1][x-1];
-				int b = dp[i][j-x];
-				add = min(add, max(a, b));
+			// for(int x=1; x<=j; x++) {
+			// 	int a = dp[i-1][x-1];
+			// 	int b = dp[i][j-x];
+			// 	add = min(add, max(a, b));
+			// }
+			int low = 1, high = j;
+			while(low <= high) {
+				int mid = low + (high- low)/2;
+				if(dp[i-1][low-1] < dp[i][j-low]) low = mid+1;
+				else high = mid-1;
 			}
+			int opt1 = max(dp[i-1][low-1], dp[i][j-low]);
+			int opt2 = max(dp[i-1][high-1], dp[i][j-high]);
+			add = min(opt1, opt2);
 			dp[i][j] = 1 + add;
 		}
 	}
