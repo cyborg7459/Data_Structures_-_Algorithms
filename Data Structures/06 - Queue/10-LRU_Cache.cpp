@@ -78,7 +78,7 @@ int main() {
         cout << "Enter query type (SET/GET) : ";
         string q;
         cin >> q;
-        if (q == "SET") {
+        if (q == "S") {
             cout << "Enter key : ";
             int key;
             cin >> key;
