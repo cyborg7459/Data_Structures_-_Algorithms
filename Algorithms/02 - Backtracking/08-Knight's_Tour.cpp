@@ -1,6 +1,6 @@
 // PS : We have to move the Knight in a chessboard in such a manner that it covers each and every box on the board without going on the same board twice
 // Explanation : Backtracking solution. We'll start with the first move at the first box, from there on, we'll go to the next possible box which is valid and recursively do this.
-// If we reach the end without breaking, it means that the current solution was correct. If however, we reach a point where we can't get any valid points, then that partiuclar solution
+// If we reach the end without breaking, it means that the current solution was correct. If however, we reach a point where we can't get any valid points, then that particular solution
 // is wrong and we need to backtrack from there. Hence, we'll mark that box as unvisited and move back one step. From there, we can move to the next valid box. The order of directions in the
 // dir vector is also important for runtime, and this partiuclar order can solve till n=8. If we change it, then n=8 would give TLE. This one is efficient because we know that from the point
 // we're starting, we'll often have to move down and right, and hence accordingly we choose the directions
