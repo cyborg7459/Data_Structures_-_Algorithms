@@ -115,3 +115,69 @@ int maxProfit(vector<int>& prices, int k) {
     if(prices.size() == 0) return 0;
     return helper(0, false, prices, k);
 }
+
+// ====================================================================================================================================================
+// VARIANT 5 : WE CAN MAKE MAXIMUM 2 TRANSACTIONS
+// Explanation : In this case there is no need for dynamic programming as we can simply caluclate the max profit up till
+// ith day, and max profit if we start from ith day in 2 separate arrays using variant 1 method, and then maximize left[i] + right[i]
+
+int maxProfit(vector<int>& prices) {
+    int n = prices.size();
+    if(n == 0) return 0;
+    int left[n], right[n];
+
+    int mincp = prices[0], cash = 0;
+    for(int i=0; i<n; i++) {
+        mincp = min(mincp, prices[i]);
+        cash = max(cash, prices[i] - mincp);
+        left[i] = cash;
+    }
+
+    int maxsp = prices[n-1];
+    cash = 0;
+    for(int i=n-1; i>=0; i--) {
+        maxsp = max(maxsp, prices[i]);
+        cash = max(cash, maxsp - prices[i]);
+        right[i] = cash;
+    }
+
+    int ans = 0;
+    for(int i=0; i<n; i++) {
+        ans = max(ans, left[i] + right[i]);
+    }
+
+    return ans;
+}
+
+// =====================================================================================================================================================
+// VARIANT 6 : WE CAN MAKE MAXIMUM 'K' TRANSACTIONS
+// Explanation : In this case, one more dimension gets added to the dp, which represents the number of transactions left. Rest
+// everything remains the same
+
+int dp[1005][105][2];
+
+int helper(int day, bool own, vector<int> &prices, int left) {
+    if(left == 0 || day == prices.size()) return 0;
+    if(own) {
+        if(dp[day][left][1] != -1) return dp[day][left][1];
+        int opt1 = prices[day] + helper(day+1, false, prices, left-1);
+        int opt2 = helper(day+1, true, prices, left);
+        int chosen = max(opt1, opt2);
+        dp[day][left][1] = chosen;
+        return chosen;
+    }
+    else {
+        if(dp[day][left][0] != -1) return dp[day][left][0];
+        int opt1 = helper(day+1, false, prices, left);
+        int opt2 = helper(day+1, true, prices, left) - prices[day];
+        int chosen = max(opt1, opt2);
+        dp[day][left][0] = chosen;
+        return chosen;
+    }
+}
+
+int maxProfit(int k, vector<int>& prices) {
+    memset(dp, -1, sizeof dp);
+    if(prices.size() == 0) return 0;
+    return helper(0, false, prices, k);
+}
