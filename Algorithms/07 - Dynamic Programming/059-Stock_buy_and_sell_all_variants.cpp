@@ -1,7 +1,7 @@
 // STOCK BUY AND SELL PROBLEMS
 // Given the price of stocks on 'n' days, find the maximum amount of profit you can make under various conditions
 
-// =================================================================================================================
+// ================================================================================================================================================
 // VARIANT 1 : WE CAN COMPLETE AT MOST 1 TRANSACTION IN TOTAL
 // Explanation : We simply need to maximize the difference between the price of stock on a day and the minimum price
 // of stock in all the days preceding that day
@@ -16,7 +16,7 @@ int maxProfit(vector<int>& prices) {
     return cash;
 }
 
-// ==================================================================================================================
+// ================================================================================================================================================
 // VARIANT 2 : WE CAN MAKE AS MANY TRANSACTIONS AS WE WISH
 // Explanation : Given problem needs dynamic programming. We start from the first day and keep in track wheter we own
 // a stock or not. In case we own a stock, we can either choose to keep it or sell it on any particular day. In case
@@ -49,7 +49,7 @@ int maxProfit(const vector<int> &A) {
     return func(0, false, A);
 }
 
-// =====================================================================================================================
+// ================================================================================================================================================
 // VARIANT 3 : WE CAN MAKE AS MANY TRANSACTIONS AS WE WISH BUT EACH TRANSACTION HAS AN ASSOCIATED FEE
 // Explanation : Implementation same as last one with modification in the values, as we include the transaction fee as
 // well while selling the stock
@@ -80,4 +80,38 @@ int maxProfit(vector<int>& prices, int fee) {
     memset(dp, -1, sizeof dp);
     if(prices.size() == 0) return 0;
     return helper(0, false, prices, fee);
+}
+
+// ================================================================================================================================================
+// VARIANT 4 : WE CAN MAKE AS MANY TRANSACTIONS AS WE WISH, BUT THERE IS A COOLDOWN OF 'K' DAYS, WHICH MEANS
+// AFTER COMPLETING ONE TRANSACTION, WE HAVE TO WAIT FOR 'K' DAYS BEFORE BUYING ANOTHER STOCK
+// Explanation : Here the recurrence relation would change only in the place where we sell the stock, and now instead
+// of the next day, we'll look k days ahead, i.e start from the cur + k + 1 day
+
+int dp[50005][2];
+
+int helper(int day, bool own, vector<int> &prices, int k) {
+    if(day >= prices.size()) return 0;
+    if(own) {
+        if(dp[day][1] != -1) return dp[day][1];
+        int opt1 = prices[day] + helper(day+k+1, false, prices, k);
+        int opt2 = helper(day+1, true, prices, k);
+        int chosen = max(opt1, opt2);
+        dp[day][1] = chosen;
+        return chosen;
+    }
+    else {
+        if(dp[day][0] != -1) return dp[day][0];
+        int opt1 = helper(day+1, false, prices, k);
+        int opt2 = helper(day+1, true, prices, k) - prices[day];
+        int chosen = max(opt1, opt2);
+        dp[day][0] = chosen;
+        return chosen;
+    }
+}
+
+int maxProfit(vector<int>& prices, int k) {
+    memset(dp, -1, sizeof dp);
+    if(prices.size() == 0) return 0;
+    return helper(0, false, prices, k);
 }
