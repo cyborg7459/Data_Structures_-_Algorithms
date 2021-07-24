@@ -1,4 +1,4 @@
-// PS : We have to interchange all occurrences of any 2 characters from a string in such a way that the string becomes lexicofgraphically as small as possible
+// PS : We have to interchange all occurrences of any 2 characters from a string in such a way that the string becomes lexicographically as small as possible
 // Explanation : First have a second string and sort it. Now, what we have to do is check the first favourable pair from the start, because the closer to the start we make the swap, the more
 // lexicographically smaller the string is. Now, how ti decide a favourable pair? A pair is favourable is char2 is the smallest character whose first occurrence lies strictly after the current
 // character. Also, it should be smaller that the current character as well. The first condition is necessary because if the character has occurrenced before, then while interchanging, we'll
