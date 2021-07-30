@@ -205,7 +205,7 @@ int main() {
     // k1.inorder(k1.root);
 
     // CREATING A BST USING INSERT FUNCTION AND DELETING NODES USING RECURSIVE DELETING
-    BST k2;
+    // BST k2;
     k2.root = k2.insert_in_BST(5, k2.root);
     k2.insert_in_BST(4, k2.root);
     k2.insert_in_BST(10, k2.root);
@@ -218,6 +218,8 @@ int main() {
     k2.delete_node(1, k2.root);
     k2.inorder(k2.root);
     cout << "\n" << k2.root->data;
-
+    // Tree_node* C_node = (Tree_node*)malloc(sizeof(Tree_node(100)));
+    // C_node->data = 4;
+    // printf("%d", C_node->data);
     return 0;
 }
