@@ -1,4 +1,5 @@
-// Given an array of elements of length N, ranging from 0 to N – 1. All elements may not be present in the array. If element is not present then there will be -1 present in the array. Rearrange the array such that A[i] = i and if i is not present, display -1 at that place.
+// Given an array of elements of length N, ranging from 0 to N – 1. All elements may not be present in the array. If element is not present then there will be -1 present in the array.
+// Rearrange the array such that A[i] = i and if i is not present, display -1 at that place.
 
 #include <iostream>
 using namespace std;
