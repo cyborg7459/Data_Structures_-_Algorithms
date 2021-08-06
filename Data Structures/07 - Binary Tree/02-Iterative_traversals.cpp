@@ -4,7 +4,7 @@
 // ITERATIVE POSTORDER : In this, we need 2 stacks. Here the steps are similar to iterative preorder, it's just that we move in the reverse order, i.e. we first push the left child and then the right
 // child in the stack. Also, the popped off elements are added in a second stack because the postorder is actually the reverse order of popping and hence the other stack helps in reversing in O(n)
 // ITERATIVE INORDER : In this, we keep track of the nodes using a current node, the procedure is to keep going left child for as long as possible. Once we can't go further, then we pop off the topmost
-// element, add it to the inorder and then add it's right child to the stack 
+// element, add it to the inorder and then add it's right child to the stack
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -35,19 +35,24 @@ Binary_Tree::Binary_Tree(vector<int> v) {
     queue<node*> q;
     q.push(root);
     int idx = 1;
-    while(!q.empty()) {
-        node* temp = q.front();
+    while(idx < v.size()) {
+        node* cur = q.front();
         q.pop();
-        if(v[idx] != -1) {
-            node* lchild = new node(v[idx++]);
-            temp->left_child = lchild;
-            q.push(lchild);
+        int num = v[idx];
+        if(num != -1) {
+            node* new_node = new node(num);
+            cur->left_child = new_node;
+            q.push(new_node);
         }
-        if(v[idx] != -1) {
-            node* rchild = new node(v[idx++]);
-            temp->right_child = rchild;
-            q.push(rchild);
+        idx++;
+        if(idx >= v.size()) break;
+        num = v[idx];
+        if(num != -1) {
+            node* new_node = new node(num);
+            cur->right_child = new_node;
+            q.push(new_node);
         }
+        idx++;
     }
 }
 
