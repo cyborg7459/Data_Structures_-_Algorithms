@@ -1,7 +1,7 @@
 // PS : Given a binary matrix, find the largest size of rectangle that can be made using only 1s
 // Explanation : The given problem can be solved using maximum rectangle area in historgram technique (see this question in stacks). For each row, we assume the elements to be the base of historgram.
 // If the element is zero then the height of bar would be zero, else it would be 1 + arr[i-1][j] (We can do this in 1-D array since we operate on rows one at a time)
-// Now for each row, apply the historgram area algorithm technique to find the maximum area, and keep maximzing the answer using this max value
+// Now for each row, apply the histogram area algorithm technique to find the maximum area, and keep maximzing the answer using this max value
 
 #include <bits/stdc++.h>
 using namespace std;
