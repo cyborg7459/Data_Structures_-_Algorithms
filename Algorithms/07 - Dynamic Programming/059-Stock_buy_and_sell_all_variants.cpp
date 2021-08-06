@@ -118,7 +118,7 @@ int maxProfit(vector<int>& prices, int k) {
 
 // ====================================================================================================================================================
 // VARIANT 5 : WE CAN MAKE MAXIMUM 2 TRANSACTIONS
-// Explanation : In this case there is no need for dynamic programming as we can simply caluclate the max profit up till
+// Explanation : In this case there is no need for dynamic programming as we can simply calculate the max profit up till
 // ith day, and max profit if we start from ith day in 2 separate arrays using variant 1 method, and then maximize left[i] + right[i]
 
 int maxProfit(vector<int>& prices) {
