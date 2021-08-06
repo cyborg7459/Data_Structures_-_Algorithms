@@ -4,21 +4,11 @@
 // 2) Vice versa
 // Pick the best answer out of both
 
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-int gcd(int a, int b) {
-    if(a % b == 0) return b;
-    if(a < b) swap(a, b);
-    while(b > 0) {
-        a %= b;
-        swap(a, b);
-    }
-    return a;
-}
-
 int minSteps(int m, int n, int d) {
-    int t = gcd(n, m);
+    int t = __gcd(n, m);
     if(d % t != 0) return -1;
     if(d > max(n, m)) return -1;
     int c1 = 0, c2 = 0;
