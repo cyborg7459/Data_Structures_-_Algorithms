@@ -1,9 +1,8 @@
 // PS : Given 'K' sorted lists, we have to give the smallest range which contains at least one element from each of the list
 // Explanation : Initially the range would be [min, max] where min and max are the minimum & maximum of the first elements of all lists. Now, we cannot decrease max because that would exclude one list, but we can
-// increase min. Hence our goal is to increase min and much as we can. For this, we keep popping off the minimum element (found using a min heap) as long as we can. We stop popping off in any of these 2 cases :-
-// 1) Removing the current element would lead to that array becoming empty
-// 2) The next element of the current element is max, hence if we remove current element and then proceeed further than it, then current element would be excluded, and the elements larger than max are
-// already excluded hence this array would be gone completely. Hence, we must stop after making min = current element
+// increase min. Hence our goal is to increase min and much as we can. For this, we keep popping off the minimum element (found using a min heap) as long as we can. We stop popping off if the current minimum element
+// is the last element of any of the arrays, because now if we increase min, then that arrray would be excluded.
+// If the element next to the element we removed happens to be greater than max, then update max after updating the indexes because now we can move w.r.t. that element as the maximum element
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -11,6 +10,7 @@ using namespace std;
 pair<int,int> findSmallestRange(int arr[][1000], int n, int k) {
     priority_queue<pair<int, pair<int, int>>, vector<pair<int, pair<int, int>>>, greater<pair<int, pair<int, int>>>> pq;
     int mn = 100000007, mx = -1;
+    int mna = mn, mxa = mx;
     for(int i=0; i<k; i++) {
         pq.push({arr[i][0], {i, 0}});
         mn = min(mn, arr[i][0]);
@@ -23,11 +23,17 @@ pair<int,int> findSmallestRange(int arr[][1000], int n, int k) {
         int listnum = p.second.first;
         int idx = p.second.second;
         mn = num;
+        if(abs(mx - mn) < abs(mxa - mna)) {
+            mxa = mx;
+            mna = mn;
+        }
         if(idx == n-1) break;
-		if(arr[listnum][idx+1] > mx) break;
+		if(arr[listnum][idx+1] >= mx) {
+            mx = arr[listnum][idx+1];
+        };
         pq.push({arr[listnum][idx+1], {listnum, idx+1}});
     }
-    return {mn, mx};
+    return {mna, mxa};
 }
 
 int arr[1000][1000];
