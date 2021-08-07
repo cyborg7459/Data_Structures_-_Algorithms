@@ -35,11 +35,8 @@ vector <int> KMPsearch(string s, string txt) {
         if(txt[i] == s[start]) {
             if(start == n-1) {
                 ans.push_back(i - n + 2);
-                if(txt[i] == s[lps[start]]) {
-                    start = lps[start];
-                    i--;
-                }
-                else start = 0;
+                start = lps[start];
+                i--;
             }
             else start++;
         }
@@ -55,7 +52,7 @@ vector <int> KMPsearch(string s, string txt) {
 }
 
 int main() {
-    string txt = "ababb";
+    string txt = "ababbbab";
     string pattern = "ab";
     vector<int> v = KMPsearch(pattern, txt);
     for(int t : v) cout << t << " ";
