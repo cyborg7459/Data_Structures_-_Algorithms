@@ -16,8 +16,8 @@ void func1(int n) {
 }
 
 int main() {
-  func(10);
+  func(15);
   cout << "\n";
-  func1(10);
+  func1(15);
   return 0;
 }
