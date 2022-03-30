@@ -1,5 +1,8 @@
 // An array contains both positive and negative numbers in random order. Rearrange the array elements so that positive and negative numbers are placed alternatively
 // Rearrange positive and negative numbers in O(n) time and O(1) extra space
+// EXPLANATION: For the first step, we'll separate out all positive and negative numbers by placing the negative numbers at the start of the array. Once this has been done,
+// the next step is to replace every alternate positive number with a negative number. For this we'll use 2 pointers, one for positive numbers and other for negative numbers.
+// The positive pointer would move single place at a time while the negative pointer would move 2 places at once
 
 #include <iostream>
 using namespace std;
