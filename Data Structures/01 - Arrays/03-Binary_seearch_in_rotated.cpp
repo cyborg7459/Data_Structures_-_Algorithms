@@ -1,4 +1,8 @@
 // The following algorithm can be used to perform searching in a rotated sorted array in O(log n) complexity
+// Explanation : The first step in this solution is to find the pivot element, i.e. the point w.r.t. which the array has been rotated. This can be done by binary search, i.e.
+// each time we'll check whether the middle element is the pivot or not. If yes, then simply return the mid element. Otherwise, we'll check whether the pivot lies towards the
+// left or right of the mid element and accordingly narrow our search
+
 #include <iostream>
 using namespace std;
 
