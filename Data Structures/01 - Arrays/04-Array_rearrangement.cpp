@@ -1,5 +1,7 @@
 // Given an array of elements of length N, ranging from 0 to N – 1. All elements may not be present in the array. If element is not present then there will be -1 present in the array.
 // Rearrange the array such that A[i] = i and if i is not present, display -1 at that place.
+// EXPLANATION: In the given problem, we'll start with traversing the array. If there is the correct or no element at a position, then we'll just proceed forward. Else if the position
+// is occupied by the incorrect number, we'll swap the number with it's correct position and repeat the step for the current position
 
 #include <iostream>
 using namespace std;
