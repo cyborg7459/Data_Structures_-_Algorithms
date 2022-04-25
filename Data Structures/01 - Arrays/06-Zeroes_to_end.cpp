@@ -8,19 +8,13 @@ void print(int arr[], int n) {
 }
 
 void rearrange(int arr[], int end) {
-    int start = 0;
-    end--;
-    while(start < end) {
-        if(arr[start]!=0)
-            start++;
-        if(arr[end]==0)
-            end--;
-        if(arr[start]==0 && arr[end]!=0) {
-            swap(arr[start], arr[end]);
-            end--;
-            start++;
-        }
+  int zi = -1;
+  for(int i=0; i<end; i++) {
+    if(arr[i] != 0) {
+      zi++;
+      swap(arr[i], arr[zi]);
     }
+  }
 }
 
 int main() {
