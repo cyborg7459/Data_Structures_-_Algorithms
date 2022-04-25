@@ -9,7 +9,7 @@
 // means that all elements b/w pi and i are negative, else we would've got the positive integer already. Now we reverse all the elements from pi to i, thus the number at i goes to pi, which is required. Now
 // we again reverse from pi+1 to i. This ensures that the relative order of the remaining elements did not change. It also made sure that the pi+1 has a negative integer, hence maintaining the alternation.
 // If pi > i, then by the manner we have solved the given question, pi would definitely be i+1. In this case, all we have to do is find the next negative index ni and then reverse from i to ni, thus putting
-// a negative integer at i, and then reversing i+1 to ni hence maintaining order as well as alteration. Be careful with the updation statements for i and pi though.
+// a negative integer at i, and then reversing i+1 to i hence maintaining order as well as alteration. Be careful with the updation statements for i and pi though.
 
 #include <bits/stdc++.h>
 using namespace std;
