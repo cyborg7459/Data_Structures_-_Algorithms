@@ -53,8 +53,8 @@ int main() {
 				else {
 					rev(v, cur_i, next_neg);
 					rev(v, cur_i+1, next_neg);
-					cur_i++;              // because we already put the correct element at cur_i + 1 index and don't want to disturb it now
-                    p_i+=2;
+					cur_i++;
+          p_i+=2;
 				}
 			}
 		}
