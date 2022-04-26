@@ -1,7 +1,7 @@
 // PS : Given an array, find the number of distinct unordered pairs of (i, j) such that a[i] + a[j] belongs in the range [L, R]
-// Explanation : For this problem, we'll need a sorted array. For each element x, the second element should lie in the range of [L-x, R-x]. Now, we'll break in x itself is greater than R because due to sorted array
+// Explanation : For this problem, we'll need a sorted array. For each element x, the second element should lie in the range of [L-x, R-x]. Now, we'll break if x itself is greater than R because due to sorted array
 // we'll find no solutions ahead. Secondly, if (L-x) > largest element in the array, then we can start the next iteration as no element would be possible this time as well. After this, we compress the range if possible,
-// i.e. the lower limit should be gte x+1 (for the sake of simplicity, we'll handle multiple occurrences of same element giving the sum in the required range separately, using a map). and the upper limit should be max
+// i.e. the lower limit should be gte x+1 (for the sake of simplicity, we'll handle multiple occurrences of same element giving the sum in the required range separately, using a map), and the upper limit should be lte max
 // v[n-1]. Once this is done, then for the left limit, we'll find the lower bound, and for the right limit, we'll find the upper bound and subtract 1 (because for L-x we need the first occurrence and for R-x we need the
 // last occurrence). Hence we got the range of integers and we can add the length of the subarray
 
