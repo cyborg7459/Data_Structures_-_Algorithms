@@ -31,17 +31,18 @@ void display(Node *p) {
 }
 
 void reverseLinkedList(Node *p) {
-    Node *q = p;
-    p=p->next;
-    q->next=NULL;
-    while(p!=NULL) {
-        Node *temp = p->next;
-        p->next=q;
-        q=p;
-        p=temp;
+    Node* cur = p;
+    Node* prev = nullptr;
+    while(true) {
+      Node* nxt = cur->next;
+      cur->next = prev;
+      if(nxt) {
+        prev = cur;
+        cur = nxt;
+      }
+      else break;
     }
-    first=q;
-    display(first);
+    first = cur;
 }
 
 void recursiveReverse(Node *p, Node *q) {
@@ -62,6 +63,7 @@ int main() {
     display(first);
     cout << "\nAfter reversing : ";
     reverseLinkedList(first);
+    display(first);
     cout << "\nAfter reversing again (using recursion) : ";
     recursiveReverse(first, NULL);
     display(first);
