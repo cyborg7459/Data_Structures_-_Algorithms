@@ -1,3 +1,6 @@
+// Description: Infix to postfix works on the basis of priorities. It follows a simple rule - an operator can be added on top of other operator only if it is of greater priority. Hence, before pushing
+// operator onto the stack, we remove all operators of greater or equal priority that it
+
 #include <bits/stdc++.h>
 using namespace std;
 
